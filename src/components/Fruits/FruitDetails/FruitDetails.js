@@ -1,11 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./FruitDetails.css";
 import Image from "./Red Apple.png";
+import FruitsList from "./fruits.json";
 
-const fruitDetails = () => {
+const fruitDetails = (props) => {
   return (
     <div className="fruitsDetails">
-      <button>Go Back</button>
+      <button
+        onClick={() => {
+          props.history.goBack();
+        }}
+      >
+        Go Back
+      </button>
+
       <div className="heading2">
         <h2>Fruit Info</h2>
         <img src={Image} alt="fruit" width="100px" />

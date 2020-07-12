@@ -1,30 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import styles from "./Register.module.css";
+
 const register = () => {
   return (
     <div className="register">
-      <div className="heading">
+      <div className={styles.heading}>
         <h2>Register</h2>
       </div>
       <form action="#">
-        <div className="input-group input-group-lg">
+        <div className={styles.input}>
           <span className="input-group-addon">
-            <i className="fa fa-user"></i>
+            <i className={styles.fa + " fa fa-user"}></i>
           </span>
           <input type="text" className="form-control" placeholder="Name" />
         </div>
 
-        <div className="input-group input-group-lg">
+        <div className={styles.input}>
           <span className="input-group-addon">
-            <i className="fa fa-envelope"></i>
+            <i className={styles.fa + " fa fa-envelope"}></i>
           </span>
           <input type="email" className="form-control" placeholder="Email" />
         </div>
 
-        <div className="input-group input-group-lg">
+        <div className={styles.input}>
           <span className="input-group-addon">
-            <i className="fa fa-lock"></i>
+            <i className={styles.fa + " fa fa-lock"}></i>
           </span>
           <input
             type="password"
@@ -33,15 +35,15 @@ const register = () => {
           />
         </div>
 
-        <Link to="/fruitlists">
-          <button type="submit" className="float">
+        <Link to="/getFruits">
+          <button type="submit" className={styles.button}>
             Register
           </button>
         </Link>
-        <h3>
+        <h3 className={styles.h3margin}>
           Already have an Account?{" "}
-          <Link to="/">
-            <button>Login Here</button>
+          <Link to="/login">
+            <button className={styles.button}>Login Here</button>
           </Link>
         </h3>
       </form>

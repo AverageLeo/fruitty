@@ -1,20 +1,20 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 
-import "./FruitsList.css";
+import styles from "./FruitsList.module.css";
 
 const fruitsList = () => {
   return (
     <div className="fruitsList">
       <div className="heading2">
         <h2>Fruits List</h2>
-        <NavLink to="/fruitlists">
-          <button>Fruits</button>
+        <NavLink to="/getFruits">
+          <button className={styles.fruitButtons}>Fruits</button>
         </NavLink>
         <NavLink to="/favorites">
-          <button>Favorites</button>
+          <button className={styles.fruitButtons}>Favorites</button>
         </NavLink>
-        <div className="fruitsBox">
+        <div className={styles.fruitsBox}>
           <ul>
             <Link to="/fruitdetails">
               <li>Red Apple</li>

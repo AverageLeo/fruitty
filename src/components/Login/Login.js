@@ -1,23 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import styles from "./Login.module.css";
+
 const login = (props) => {
   return (
     <div className="login">
-      <div className="heading">
+      <div className={styles.heading}>
         <h2>Login</h2>
       </div>
       <form action="#">
-        <div className="input-group input-group-lg">
+        <div className={styles.input}>
           <span className="input-group-addon">
-            <i className="fa fa-envelope"></i>
+            <i className={styles.fa + " fa fa-envelope"}></i>
           </span>
           <input type="email" className="form-control" placeholder="Email" />
         </div>
 
-        <div className="input-group input-group-lg">
+        <div className={styles.input}>
           <span className="input-group-addon">
-            <i className="fa fa-lock"></i>
+            <i className={styles.fa + " fa fa-lock"}></i>
           </span>
           <input
             type="password"
@@ -26,15 +28,19 @@ const login = (props) => {
           />
         </div>
 
-        <Link to="/fruitlists">
-          <button type="submit" className="float" onClick={console.log(props)}>
+        <Link to="/getFruits">
+          <button
+            type="submit"
+            className={styles.button}
+            onClick={console.log(props)}
+          >
             Login
           </button>
         </Link>
-        <h3>
+        <h3 className={styles.h3margin}>
           Don't have an Account?{" "}
           <Link to="/register">
-            <button>Register Here</button>
+            <button className={styles.button}>Register Here</button>
           </Link>
         </h3>
       </form>

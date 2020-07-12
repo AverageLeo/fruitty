@@ -40,13 +40,13 @@ class App extends Component {
 
           <Switch>
             <Route
-              path="/"
+              path="/login"
               exact
               component={Login}
               clickLogin={this.loginHandler}
             />
             <Route path="/register" exact component={Register} />
-            <Route path="/fruitlists" component={FruitLists} />
+            <Route path="/getFruits" component={FruitLists} />
             <Route path="/fruitDetails" component={FruitDetails} />
             <Route path="/favorites" component={Favorites} />
             <Route component={NotFound} />

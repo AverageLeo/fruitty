@@ -1,0 +1,37 @@
+.fruitsBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fruitsBox ul {
+  width: 60%;
+}
+
+.fruitsBox li {
+  list-style: none;
+  padding: 5px;
+  border: 1px solid lightgray;
+  cursor: pointer;
+}
+
+.fruitButtons {
+  margin-top: 2rem;
+  background-color: transparent;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: 1px solid #000;
+  transition: ease-in 0.2s;
+  margin: 0 10px;
+}
+
+.fruitButtons:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  padding: 0.6rem 1.1rem;
+}
+
+.active {
+  color: blue;
+}
