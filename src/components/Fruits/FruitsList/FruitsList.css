@@ -12,4 +12,5 @@ li {
   list-style: none;
   padding: 5px;
   border: 1px solid lightgray;
+  cursor: pointer;
 }

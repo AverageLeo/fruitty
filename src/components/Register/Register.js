@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const register = () => {
   return (
@@ -32,9 +33,17 @@ const register = () => {
           />
         </div>
 
-        <button type="submit" className="float">
-          Login
-        </button>
+        <Link to="/fruitlists">
+          <button type="submit" className="float">
+            Register
+          </button>
+        </Link>
+        <h3>
+          Already have an Account?{" "}
+          <Link to="/login">
+            <button>Login Here</button>
+          </Link>
+        </h3>
       </form>
     </div>
   );
