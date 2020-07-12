@@ -1,0 +1,15 @@
+.fruitsBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  width: 60%;
+}
+
+li {
+  list-style: none;
+  padding: 5px;
+  border: 1px solid lightgray;
+}
