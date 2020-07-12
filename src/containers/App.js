@@ -30,27 +30,29 @@ class App extends Component {
     return (
       <HashRouter>
         <div className="App">
-          {this.state.isSignedIn === true ? (
-            <Link to="/">
-              <nav>
-                <button>Log-out</button>
-              </nav>
-            </Link>
-          ) : null}
+          <div className="content">
+            {this.state.isSignedIn === true ? (
+              <Link to="/">
+                <nav>
+                  <button>Log-out</button>
+                </nav>
+              </Link>
+            ) : null}
 
-          <Switch>
-            <Route
-              path="/login"
-              exact
-              component={Login}
-              clickLogin={this.loginHandler}
-            />
-            <Route path="/register" exact component={Register} />
-            <Route path="/getFruits" component={FruitLists} />
-            <Route path="/fruitDetails" component={FruitDetails} />
-            <Route path="/favorites" component={Favorites} />
-            <Route component={NotFound} />
-          </Switch>
+            <Switch>
+              <Route
+                path="/login"
+                exact
+                component={Login}
+                clickLogin={this.loginHandler}
+              />
+              <Route path="/register" exact component={Register} />
+              <Route path="/getFruits" component={FruitLists} />
+              <Route path="/fruitDetails" component={FruitDetails} />
+              <Route path="/favorites" component={Favorites} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
           <Footer />
         </div>
       </HashRouter>
