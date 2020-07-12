@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const login = ({ name, email, id }) => {
+const login = (props) => {
   return (
     <div className="login">
       <div className="heading">
@@ -27,7 +27,7 @@ const login = ({ name, email, id }) => {
         </div>
 
         <Link to="/fruitlists">
-          <button type="submit" className="float">
+          <button type="submit" className="float" onClick={console.log(props)}>
             Login
           </button>
         </Link>

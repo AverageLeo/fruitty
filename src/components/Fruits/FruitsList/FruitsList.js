@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import "./FruitsList.css";
 
@@ -16,7 +16,9 @@ const fruitsList = () => {
         </NavLink>
         <div className="fruitsBox">
           <ul>
-            <li>Red Apple</li>
+            <Link to="/fruitdetails">
+              <li>Red Apple</li>
+            </Link>
             <li>Green Apple</li>
             <li>Banana</li>
             <li>Pineapple</li>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { HashRouter, Route, Switch, Link } from "react-router-dom";
 
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
@@ -14,21 +14,37 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    isLoggedIn: true,
+    isSignedIn: false,
+    user: {
+      id: "",
+      name: "",
+      email: "",
+    },
+  };
+
+  loginHandler = () => {
+    this.setState({ isSignedIn: true });
   };
 
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className="App">
-          <Link to="/">
-            <nav>
-              <button>Log-out</button>
-            </nav>
-          </Link>
+          {this.state.isSignedIn === true ? (
+            <Link to="/">
+              <nav>
+                <button>Log-out</button>
+              </nav>
+            </Link>
+          ) : null}
 
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route
+              path="/"
+              exact
+              component={Login}
+              clickLogin={this.loginHandler}
+            />
             <Route path="/register" exact component={Register} />
             <Route path="/fruitlists" component={FruitLists} />
             <Route path="/fruitDetails" component={FruitDetails} />
@@ -37,7 +53,7 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
