@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import styles from "./FruitDetails.module.css";
 
 class FruitDetails extends Component {
+  state = {};
+
   render() {
     const fruitInfo = {
       ...this.props.fruits.find((fruit) => {

@@ -19,7 +19,7 @@ class Login extends Component {
   };
 
   onSubmitSignIn = () => {
-    fetch("https://localhost:3003/login", {
+    fetch("http://localhost:3003/login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -28,10 +28,9 @@ class Login extends Component {
       }),
     })
       .then((response) => response.json())
-      .then((user) => {
-        if (user.id) {
-          this.props.loadUser(user);
-          this.props.onRouteChange("/getFruits");
+      .then(({ user, token }) => {
+        if (user && user._id) {
+          this.props.history.push("/getFruits");
         }
       });
   };

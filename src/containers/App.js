@@ -3,7 +3,6 @@ import { HashRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
-// import FruitsNav from "../components/Fruits/FruitNav/FruitNav";
 import FruitLists from "../components/Fruits/FruitsList/FruitsList";
 import FruitDetails from "../components/Fruits/FruitDetails/FruitDetails";
 import Favorites from "../components/Fruits/Favorites/Favorites";
@@ -24,6 +23,7 @@ class App extends Component {
     },
   };
 
+  // fetch fruits upon reload
   componentDidMount() {
     this.props.onRequestFruits();
   }
@@ -67,21 +67,22 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    fruits: state.requestFruitsReducer.fruits,
-    isPending: state.requestFruitsReducer.isPending,
-    // error: state.requestFruits.error
-  };
-};
+// mapping fruits from requestFruitsReducer to App props
 
+// const mapStateToProps = (state) => {
+//   return {
+//     fruits: state.requestFruitsReducer.fruits,
+//     isPending: state.requestFruitsReducer.isPending,
+//   };
+// };
+
+// mapping requestFruitsActionCreator to App props
 const mapDispatchToProps = (dispatch) => {
   return {
     onRequestFruits: () => {
       return dispatch(requestFruitsActionCreator());
     },
-    // onRequestFruits: () => dispatch(requestFruits()
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

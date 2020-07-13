@@ -1,3 +1,6 @@
+// Action-creator that actions fetchinging Fruits-list
+// and dispaching an action to the reducer accordingly
+
 export const requestFruitsActionCreator = () => (dispatch) => {
   dispatch({ type: "REQUEST_FRUITS_PENDING" });
   fetch("http://localhost:3003/getFruits", {
