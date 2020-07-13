@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import FruitsList from "./fruits.json";
 import styles from "./FruitsList.module.css";
 
 const fruitsList = (props) => {

@@ -10,7 +10,7 @@
 
 .input input:focus,
 .input input:hover {
-  color: white;
+  color: black;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
