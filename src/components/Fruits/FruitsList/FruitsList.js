@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import FruitsList from "./fruits.json";
 import styles from "./FruitsList.module.css";
+import Fruit from "../Fruit/Fruit";
 
 const fruitsList = (props) => {
   console.log(props.fruits);
@@ -19,16 +20,13 @@ const fruitsList = (props) => {
         </NavLink>
         <div className={styles.fruitsBox}>
           <ul>
-            <Link to="/fruitdetails">
-              <li>Red Apple</li>
-            </Link>
-            <li>Green Apple</li>
-            <li>Banana</li>
-            <li>Pineapple</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
+            {FruitsList.map((fruit, i) => {
+              return (
+                <Link to="/fruitdetails/" key={fruit.id}>
+                  <Fruit id={fruit.id} name={fruit.name} />
+                </Link>
+              );
+            })}
           </ul>
         </div>
       </div>

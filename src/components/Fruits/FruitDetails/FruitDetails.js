@@ -1,7 +1,6 @@
 import React from "react";
 
 import Image from "./Red Apple.png";
-import FruitsList from "./fruits.json";
 
 import styles from "./FruitDetails.module.css";
 

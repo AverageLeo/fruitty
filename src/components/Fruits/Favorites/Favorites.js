@@ -14,6 +14,7 @@ const favorites = () => {
         <NavLink to="/favorites">
           <button className={styles.fruitButtons}>Favorites</button>
         </NavLink>
+
         <div className={styles.fruitsBox}>
           <ul>
             <li>Red Apple</li>
