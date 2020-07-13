@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import styles from "./FruitsList.module.css";
 
-const fruitsList = () => {
+const fruitsList = (props) => {
+  console.log(props.fruits);
   return (
     <div className="fruitsList">
       <div className="heading2">
@@ -33,4 +35,10 @@ const fruitsList = () => {
   );
 };
 
-export default fruitsList;
+const mapStateToProps = (state) => {
+  return {
+    fruits: state.fruits,
+  };
+};
+
+export default connect(mapStateToProps)(fruitsList);

@@ -21,6 +21,7 @@ const fruitDetails = (props) => {
         <div className={styles.top}>
           <h2>Fruit Info</h2>
           <img className={styles.image} src={Image} alt="fruit" />
+          <h2>Fruit_Name</h2>
           <button className={styles.starButton + " fa fa-star"} />
           <button className={styles.wikiButton}>Show on Wiki</button>
         </div>
@@ -28,16 +29,16 @@ const fruitDetails = (props) => {
           <h3>Overview</h3>
           <div className={styles.tables}>
             <ul>
-              <li>Red Apple</li>
-              <li>Green Apple</li>
-              <li>Banana</li>
+              <li>fruit_info</li>
+              <li>fruit_info</li>
+              <li>fruit_info</li>
             </ul>
             <h3>Nutrition</h3>
             <ul>
-              <li>Red Apple</li>
-              <li>Green Apple</li>
-              <li>Banana</li>
-              <li>Pineapple</li>
+              <li>nutrition_info</li>
+              <li>nutrition_info</li>
+              <li>nutrition_info</li>
+              <li>nutrition_info</li>
               <li>Lorem, ipsum.</li>
               <li>Lorem, ipsum.</li>
               <li>Lorem, ipsum.</li>

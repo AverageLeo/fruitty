@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HashRouter, Route, Switch, Link } from "react-router-dom";
+import { HashRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
@@ -50,6 +50,7 @@ class App extends Component {
               <Route path="/getFruits" component={FruitLists} />
               <Route path="/fruitDetails" component={FruitDetails} />
               <Route path="/favorites" component={Favorites} />
+              <Redirect exact from="/" to="/login" />
               <Route component={NotFound} />
             </Switch>
           </div>
