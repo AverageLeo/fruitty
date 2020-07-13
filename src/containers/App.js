@@ -11,6 +11,8 @@ import NotFound from "../components/NotFound/NotFound";
 import Footer from "../components/Footer/Footer";
 
 import "./App.css";
+import { requestFruitsActionCreator } from "../actions/actions";
+import { connect } from "react-redux";
 
 class App extends Component {
   state = {
@@ -21,6 +23,10 @@ class App extends Component {
       email: "",
     },
   };
+
+  componentDidMount() {
+    this.props.onRequestFruits();
+  }
 
   loginHandler = () => {
     this.setState({ isSignedIn: true });
@@ -48,7 +54,7 @@ class App extends Component {
               />
               <Route path="/register" exact component={Register} />
               <Route path="/getFruits" component={FruitLists} />
-              <Route path="/fruitDetails" component={FruitDetails} />
+              <Route path="/fruitDetails/:name" component={FruitDetails} />
               <Route path="/favorites" component={Favorites} />
               <Redirect exact from="/" to="/login" />
               <Route component={NotFound} />
@@ -61,4 +67,21 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    fruits: state.requestFruitsReducer.fruits,
+    isPending: state.requestFruitsReducer.isPending,
+    // error: state.requestFruits.error
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onRequestFruits: () => {
+      return dispatch(requestFruitsActionCreator());
+    },
+    // onRequestFruits: () => dispatch(requestFruits()
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

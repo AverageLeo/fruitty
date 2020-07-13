@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./Fruit.module.css";
 
-const fruit = ({ name, id }) => {
+const fruit = ({ fruitDetails }) => {
   return (
     <li className={styles.li}>
       <div className="fruit">
         <div>
           <h4>
-            {name} {">"}
+            {fruitDetails.name} {">"}
           </h4>
         </div>
       </div>

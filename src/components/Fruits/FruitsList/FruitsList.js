@@ -2,12 +2,10 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import FruitsList from "./fruits.json";
 import styles from "./FruitsList.module.css";
 import Fruit from "../Fruit/Fruit";
 
 const fruitsList = (props) => {
-  console.log(props.fruits);
   return (
     <div className="fruitsList">
       <div className="heading2">
@@ -20,10 +18,14 @@ const fruitsList = (props) => {
         </NavLink>
         <div className={styles.fruitsBox}>
           <ul>
-            {FruitsList.map((fruit, i) => {
+            {props.fruits.map((fruit, i) => {
               return (
-                <Link to="/fruitdetails/" key={fruit.id}>
-                  <Fruit id={fruit.id} name={fruit.name} />
+                <Link
+                  to={`/fruitdetails/${fruit.name.toLowerCase()}`}
+                  key={fruit.id}
+                  genus={fruit.genus}
+                >
+                  <Fruit fruitDetails={fruit} />
                 </Link>
               );
             })}
@@ -36,7 +38,7 @@ const fruitsList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    fruits: state.fruits,
+    fruits: state.requestFruitsReducer.fruits,
   };
 };
 

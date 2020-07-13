@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Register.module.css";
+import Image from "../Fruits/FruitDetails/Red Apple.png";
 
 const register = () => {
   return (
@@ -9,6 +10,7 @@ const register = () => {
       <div className={styles.heading}>
         <h2>Register</h2>
       </div>
+      <img className={styles.image} src={Image} alt="fruit" width="200px" />
       <form action="#">
         <div className={styles.input}>
           <span className="input-group-addon">

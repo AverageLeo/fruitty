@@ -13,7 +13,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   width: 60%;
   margin-right: auto;
   margin-left: auto;
@@ -27,7 +27,7 @@
   border: 1px solid #000;
   transition: ease-in 0.2s;
   margin: 20px 10px;
-  width: 130px;
+  width: 160px;
 }
 
 .image {
@@ -56,6 +56,7 @@ ul {
 li {
   list-style: none;
   padding: 5px;
+  margin: 5px;
   border: 1px solid lightgray;
   cursor: pointer;
 }
@@ -69,11 +70,15 @@ li {
   border: 1px solid #000;
   transition: ease-in 0.2s;
   margin: 0 10px 10px 10px;
-  width: 130px;
+  width: 160px;
 }
 
 .wikiButton:hover {
   background-color: rgba(255, 255, 255, 0.9);
   font-size: 0.875rem;
   padding: 0.6rem 1.1rem;
+}
+
+.wikiLogo {
+  margin-right: 5px;
 }
