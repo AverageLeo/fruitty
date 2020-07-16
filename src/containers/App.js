@@ -32,13 +32,21 @@ class App extends Component {
   };
 
   render() {
+    let Button;
+    if (this.props.user) {
+      Button = (
+        <button onClick={this.logoutHandler} className="logoutButton">
+          Log-out
+        </button>
+      );
+    } else {
+      Button = null;
+    }
     return (
       <HashRouter>
         <div className="App">
           <div className="content">
-            {/* if statement */}
-            <button onClick={this.logoutHandler}>Log-out</button>
-
+            {Button}
             <Switch>
               <Route
                 path="/login"
