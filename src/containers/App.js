@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { requestFruitsActionCreator } from "../actions/actions";
+import {
+  requestFruitsActionCreator,
+  logoutUserActionCreator,
+} from "../actions/actions";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import FruitLists from "../components/Fruits/FruitsList/FruitsList";
@@ -19,16 +22,14 @@ class App extends Component {
     this.props.onRequestFruits();
   }
 
+  componentDidUpdate() {
+    // if (!this.props.user) {
+    //   this.props.history.push("/login");
+    // }
+  }
+
   logoutHandler = () => {
-    fetch("http://localhost:3003/checkAuth/logout", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + this.props.user.token,
-      },
-    }).then(console.log(this.props));
-    // .then(this.props.history.push("/login"));
+    this.props.onLogoutUser(this.props.user.token);
   };
 
   render() {
@@ -42,18 +43,14 @@ class App extends Component {
     } else {
       Button = null;
     }
+    // console.log(this.props.user);
     return (
       <HashRouter>
         <div className="App">
           <div className="content">
             {Button}
             <Switch>
-              <Route
-                path="/login"
-                exact
-                component={Login}
-                clickLogin={this.loginHandler}
-              />
+              <Route path="/login" exact component={Login} />
               <Route path="/register" exact component={Register} />
               <Route path="/getFruits" component={FruitLists} />
               <Route path="/fruitDetails/:name" component={FruitDetails} />
@@ -74,6 +71,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onRequestFruits: () => {
       return dispatch(requestFruitsActionCreator());
+    },
+    onLogoutUser: (token) => {
+      return dispatch(logoutUserActionCreator(token));
     },
   };
 };

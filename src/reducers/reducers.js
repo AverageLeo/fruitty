@@ -50,7 +50,48 @@ export const loginUserReducer = (state = initialStateLogin, action = {}) => {
         error: action.payload,
         isPending: false,
       });
+    case "USER_LOGOUT_PENDING":
+      return Object.assign({}, state, { isPending: true });
+
+    case "USER_LOGOUT_SUCCESS":
+      return Object.assign({}, state, {
+        user: null,
+        isPending: false,
+      });
+
+    case "USER_LOGOUT_FAILED":
+      return Object.assign({}, state, {
+        error: action.payload,
+        isPending: false,
+      });
     default:
       return state;
   }
 };
+
+// const initialStateLogout = {
+//   isPending: false,
+//   user: "",
+//   error: "",
+// };
+
+// export const logoutUserReducer = (state = initialStateLogout, action = {}) => {
+//   switch (action.type) {
+//     case "USER_LOGOUT_PENDING":
+//       return Object.assign({}, state, { isPending: true });
+
+//     case "USER_LOGOUT_SUCCESS":
+//       return Object.assign({}, state, {
+//         user: null,
+//         isPending: false,
+//       });
+
+//     case "USER_LOGOUT_FAILED":
+//       return Object.assign({}, state, {
+//         error: action.payload,
+//         isPending: false,
+//       });
+//     default:
+//       return state;
+//   }
+// };
