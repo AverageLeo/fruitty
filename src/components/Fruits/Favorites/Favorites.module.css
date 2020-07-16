@@ -15,6 +15,11 @@
   cursor: pointer;
 }
 
+.fruitsBox ul a {
+  text-decoration: none;
+  color: #000;
+}
+
 .fruitButtons {
   margin-top: 2rem;
   background-color: transparent;

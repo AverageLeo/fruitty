@@ -27,3 +27,30 @@ export const requestFruitsReducer = (
       return state;
   }
 };
+
+const initialStateLogin = {
+  isPending: false,
+  user: null,
+  error: "",
+};
+
+export const loginUserReducer = (state = initialStateLogin, action = {}) => {
+  switch (action.type) {
+    case "USER_LOGIN_PENDING":
+      return Object.assign({}, state, { isPending: true });
+
+    case "USER_LOGIN_SUCCESS":
+      return Object.assign({}, state, {
+        user: action.payload,
+        isPending: false,
+      });
+
+    case "USER_LOGIN_FAILED":
+      return Object.assign({}, state, {
+        error: action.payload,
+        isPending: false,
+      });
+    default:
+      return state;
+  }
+};

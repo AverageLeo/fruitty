@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { HashRouter, Route, Switch, Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 
+import { requestFruitsActionCreator } from "../actions/actions";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import FruitLists from "../components/Fruits/FruitsList/FruitsList";
@@ -10,40 +12,36 @@ import NotFound from "../components/NotFound/NotFound";
 import Footer from "../components/Footer/Footer";
 
 import "./App.css";
-import { requestFruitsActionCreator } from "../actions/actions";
-import { connect } from "react-redux";
 
 class App extends Component {
-  state = {
-    isSignedIn: false,
-    user: {
-      id: "",
-      name: "",
-      email: "",
-    },
-  };
-
   // fetch fruits upon reload
   componentDidMount() {
     this.props.onRequestFruits();
   }
 
-  loginHandler = () => {
-    this.setState({ isSignedIn: true });
-  };
+  // componentDidUpdate() {
+  //   console.log(this.props.user.token);
+  // }
+
+  // logoutHandler = () => {
+  //   fetch("http://localhost:3003/checkAuth/logoutALL", {
+  //     method: "post",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + this.props.user.token,
+  //     },
+  //   }).then(console.log(this.props));
+  //   // .then(this.props.history.push("/login"));
+  // };
 
   render() {
     return (
       <HashRouter>
         <div className="App">
           <div className="content">
-            {this.state.isSignedIn === true ? (
-              <Link to="/">
-                <nav>
-                  <button>Log-out</button>
-                </nav>
-              </Link>
-            ) : null}
+            {/* if statement */}
+            <button onClick={this.logoutHandler}>Log-out</button>
 
             <Switch>
               <Route
@@ -67,15 +65,6 @@ class App extends Component {
   }
 }
 
-// mapping fruits from requestFruitsReducer to App props
-
-// const mapStateToProps = (state) => {
-//   return {
-//     fruits: state.requestFruitsReducer.fruits,
-//     isPending: state.requestFruitsReducer.isPending,
-//   };
-// };
-
 // mapping requestFruitsActionCreator to App props
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -84,5 +73,11 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
+
+// const mapStateToProps = (state) => {
+//   return {
+//     user: state.loginUserReducer.user,
+//   };
+// };
 
 export default connect(null, mapDispatchToProps)(App);
