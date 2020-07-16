@@ -59,7 +59,6 @@ export const logoutUserActionCreator = (token) => (dispatch) => {
       "Content-Length": 0,
     },
   })
-    // .then((response) => response.json())
     .then((data) => {
       if (data.error) {
         dispatch({ type: "USER_LOGOUT_FAILED", payload: data.error });

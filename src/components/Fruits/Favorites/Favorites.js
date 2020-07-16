@@ -5,7 +5,24 @@ import { connect } from "react-redux";
 import styles from "./Favorites.module.css";
 import Fruit from "../Fruit/Fruit";
 
+const favoriteFruitsNamesList = ["Orange", "Apple", "Tomato"];
+localStorage.setItem(
+  "favoriteFruitsNamesList",
+  JSON.stringify(favoriteFruitsNamesList)
+);
+const storedFruits = JSON.parse(
+  localStorage.getItem("favoriteFruitsNamesList")
+);
+
+let favoriteFruits = "";
+
 const favorites = (props) => {
+  const myFunction = () => {
+    favoriteFruits = props.fruits.filter((fruit) => {
+      return storedFruits.includes(fruit.name);
+    });
+  };
+
   return (
     <div className="favorites">
       <div className="heading2">
@@ -19,7 +36,8 @@ const favorites = (props) => {
 
         <div className={styles.fruitsBox}>
           <ul>
-            {props.fruits.map((fruit, i) => {
+            {myFunction()}
+            {favoriteFruits.map((fruit, i) => {
               return (
                 <Link
                   to={`/fruitdetails/${fruit.name.toLowerCase()}`}
