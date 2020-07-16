@@ -34,6 +34,9 @@ export const loginUserActionCreator = (email, password) => (dispatch) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      if (data.error) {
+        dispatch({ type: "USER_LOGIN_FAILED", payload: data.error });
+      }
       dispatch({ type: "USER_LOGIN_SUCCESS", payload: data });
     })
     .catch((error) => {

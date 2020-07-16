@@ -19,21 +19,17 @@ class App extends Component {
     this.props.onRequestFruits();
   }
 
-  // componentDidUpdate() {
-  //   console.log(this.props.user.token);
-  // }
-
-  // logoutHandler = () => {
-  //   fetch("http://localhost:3003/checkAuth/logoutALL", {
-  //     method: "post",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + this.props.user.token,
-  //     },
-  //   }).then(console.log(this.props));
-  //   // .then(this.props.history.push("/login"));
-  // };
+  logoutHandler = () => {
+    fetch("http://localhost:3003/checkAuth/logout", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + this.props.user.token,
+      },
+    }).then(console.log(this.props));
+    // .then(this.props.history.push("/login"));
+  };
 
   render() {
     return (
@@ -74,10 +70,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     user: state.loginUserReducer.user,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    user: state.loginUserReducer.user,
+  };
+};
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

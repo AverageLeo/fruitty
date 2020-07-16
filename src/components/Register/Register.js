@@ -88,18 +88,20 @@ class Register extends Component {
           <button
             type="submit"
             className={styles.button}
-            onClick={this.onSubmitRegister}
+            onClick={(event) => {
+              event.preventDefault();
+              this.onSubmitRegister();
+            }}
           >
             Register
           </button>
-
-          <h3 className={styles.h3margin}>
-            Already have an Account?{" "}
-            <Link to="/login">
-              <button className={styles.button}>Login Here</button>
-            </Link>
-          </h3>
         </form>
+        <h3 className={styles.h3margin}>
+          Already have an Account?{" "}
+          <Link to="/login">
+            <button className={styles.button}>Login Here</button>
+          </Link>
+        </h3>
       </div>
     );
   }

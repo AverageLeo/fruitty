@@ -67,23 +67,27 @@ class Login extends Component {
           <button
             type="submit"
             className={styles.button}
-            onClick={this.onSubmitSignIn}
+            onClick={(event) => {
+              event.preventDefault();
+              this.onSubmitSignIn();
+            }}
           >
             Login
           </button>
-          <h3 className={styles.h3margin}>
-            Don't have an Account?{" "}
-            <Link to="/register">
-              <button className={styles.button}>Register Here</button>
-            </Link>
-          </h3>
         </form>
+        <h3 className={styles.h3margin}>
+          Don't have an Account?{" "}
+          <Link to="/register">
+            <button className={styles.button}>Register Here</button>
+          </Link>
+        </h3>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.loginUserReducer);
   return {
     user: state.loginUserReducer.user,
   };
