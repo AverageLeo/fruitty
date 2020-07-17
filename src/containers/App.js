@@ -4,6 +4,7 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import {
   requestFruitsActionCreator,
+  readLocalFavoriteFruitsActionCreator,
   logoutUserActionCreator,
 } from "../actions/actions";
 import Login from "../components/Login/Login";
@@ -17,6 +18,11 @@ import Footer from "../components/Footer/Footer";
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.props.onFavoriteLoad();
+  }
+
   // fetch fruits upon reload
   componentDidMount() {
     this.props.onRequestFruits();
@@ -71,6 +77,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onRequestFruits: () => {
       return dispatch(requestFruitsActionCreator());
+    },
+    onFavoriteLoad: () => {
+      return dispatch(readLocalFavoriteFruitsActionCreator());
     },
     onLogoutUser: (token) => {
       return dispatch(logoutUserActionCreator(token));

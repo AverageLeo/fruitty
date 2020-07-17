@@ -2,36 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import styles from "./FruitDetails.module.css";
-
-const storedFruits = JSON.parse(
-  localStorage.getItem("favoriteFruitsNamesList")
-);
+import { writeLocalFavoriteFruitsActionCreator } from "../../../actions/actions";
 
 class FruitDetails extends Component {
   render() {
-    // const toggleStarColor = () => {
-    //   const currentState = this.state.starButton;
-    //   this.setState({ starButton: !currentState });
-    // };
-
-    const isFruitFavorited = () => {
-      console.log(("storedFruits", storedFruits), "fruitInfo:", fruitInfo.name);
-      console.log(storedFruits.includes(fruitInfo.name));
-      // const currentState = this.state.starButton;
-      // if (storedFruits.includes(fruitInfo.name)) {
-      //   this.setState({ starButton: !currentState });
-      // }
-    };
-
     const fruitInfo = {
       ...this.props.fruits.find((fruit) => {
         return fruit.name.toLowerCase() === this.props.match.params.name;
       }),
     };
+
     const imageLink = `${fruitInfo.urlImage}`;
     const fruitNutritions = { ...fruitInfo.nutritions };
-
-    isFruitFavorited();
 
     return (
       <div className="fruitsDetails">
@@ -53,11 +35,16 @@ class FruitDetails extends Component {
               Favorite Fruits array */}
             <button
               className={
-                storedFruits.includes(fruitInfo.name)
+                this.props.favoriteFruitsNamesList.includes(fruitInfo.name)
                   ? styles.starYellow + " fa fa-star"
                   : styles.starButton + " fa fa-star"
               }
-              // onClick={toggleStarColor}
+              onClick={() => {
+                this.props.onFavoriteClick(
+                  fruitInfo.name,
+                  this.props.favoriteFruitsNamesList
+                );
+              }}
             />
 
             <a
@@ -112,10 +99,23 @@ class FruitDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fruits: state.requestFruitsReducer.fruits,
+    onFavoriteClick: (fruitName, favoriteFruitsList) => {
+      return dispatch(
+        writeLocalFavoriteFruitsActionCreator(fruitName, favoriteFruitsList)
+      );
+    },
   };
 };
 
-export default connect(mapStateToProps)(FruitDetails);
+const mapStateToProps = (state) => {
+  return {
+    fruits: state.requestFruitsReducer.fruits,
+    favoriteFruitsNamesList: [
+      ...state.localFavoriteFruitsReducer.favoriteFruitsNamesList,
+    ],
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FruitDetails);

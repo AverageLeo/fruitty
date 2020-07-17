@@ -98,7 +98,7 @@ export const loginUserReducer = (state = initialStateLogin, action = {}) => {
 
 const initialStateFavoriteFruits = {
   isPending: false,
-  favoriteFruits: [],
+  favoriteFruitsNamesList: [],
   error: "",
 };
 
@@ -112,7 +112,7 @@ export const localFavoriteFruitsReducer = (
 
     case "READ_FAVORITE_FRUITS_SUCCESS":
       return Object.assign({}, state, {
-        favoriteFruits: action.payload,
+        favoriteFruitsNamesList: action.payload,
         isPending: false,
       });
 
@@ -126,7 +126,7 @@ export const localFavoriteFruitsReducer = (
 
     case "WRITE_FAVORITE_FRUITS_SUCCESS":
       return Object.assign({}, state, {
-        favoriteFruits: action.payload,
+        favoriteFruitsNamesList: action.payload,
         isPending: false,
       });
 

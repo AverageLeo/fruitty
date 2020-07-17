@@ -4,22 +4,23 @@ import { connect } from "react-redux";
 
 import styles from "./Favorites.module.css";
 import Fruit from "../Fruit/Fruit";
+import { readLocalFavoriteFruitsActionCreator } from "../../../actions/actions";
 
-const favoriteFruitsNamesList = ["Orange", "Apple", "Tomato"];
-localStorage.setItem(
-  "favoriteFruitsNamesList",
-  JSON.stringify(favoriteFruitsNamesList)
-);
-const storedFruits = JSON.parse(
-  localStorage.getItem("favoriteFruitsNamesList")
-);
-
-let favoriteFruits = "";
-
-const favorites = (props) => {
-  const myFunction = () => {
-    favoriteFruits = props.fruits.filter((fruit) => {
-      return storedFruits.includes(fruit.name);
+const Favorites = (props) => {
+  const getFavoriteFruitsItems = () => {
+    const favoriteFruits = props.fruits.filter((fruit) => {
+      return props.favoriteFruitsNamesList.includes(fruit.name);
+    });
+    return favoriteFruits.map((fruit, i) => {
+      return (
+        <Link
+          to={`/fruitdetails/${fruit.name.toLowerCase()}`}
+          key={fruit.id}
+          genus={fruit.genus}
+        >
+          <Fruit fruitDetails={fruit} />
+        </Link>
+      );
     });
   };
 
@@ -35,30 +36,27 @@ const favorites = (props) => {
         </NavLink>
 
         <div className={styles.fruitsBox}>
-          <ul>
-            {myFunction()}
-            {favoriteFruits.map((fruit, i) => {
-              return (
-                <Link
-                  to={`/fruitdetails/${fruit.name.toLowerCase()}`}
-                  key={fruit.id}
-                  genus={fruit.genus}
-                >
-                  <Fruit fruitDetails={fruit} />
-                </Link>
-              );
-            })}
-          </ul>
+          <ul>{getFavoriteFruitsItems()}</ul>
         </div>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fruits: state.requestFruitsReducer.fruits,
+    onFavoriteClick: () => {
+      return dispatch(readLocalFavoriteFruitsActionCreator());
+    },
   };
 };
 
-export default connect(mapStateToProps)(favorites);
+const mapStateToProps = (state) => {
+  return {
+    fruits: state.requestFruitsReducer.fruits,
+    favoriteFruitsNamesList:
+      state.localFavoriteFruitsReducer.favoriteFruitsNamesList,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

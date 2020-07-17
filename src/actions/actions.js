@@ -1,8 +1,6 @@
 // Action-creator this is fetching Fruits-list
 // and dispaching an action to the reducer accordingly
 
-import fruit from "../components/Fruits/Fruit/Fruit";
-
 export const requestFruitsActionCreator = () => (dispatch) => {
   dispatch({ type: "REQUEST_FRUITS_PENDING" });
   fetch("http://localhost:3003/getFruits", {
@@ -21,29 +19,49 @@ export const requestFruitsActionCreator = () => (dispatch) => {
     });
 };
 
-// Action-creator this is fetching Favorite-Fruits-list
-// from the localStorage
+// Action-creator this is writing Favorite-Fruits-list
+// to the localStorage
 
 export const writeLocalFavoriteFruitsActionCreator = (
   fruitName,
   favoriteFruitsList
 ) => (dispatch) => {
-  // dispatch({ type: "REQUEST_FRUITS_PENDING" });
-  let updatedFavoriteFruitsList;
-  if (favoriteFruitsList.find(fruitName)) {
-    updatedFavoriteFruitsList = favoriteFruitsList;
+  try {
+    dispatch({ type: "WRITE_FAVORITE_FRUITS_PENDING" });
+    const index = favoriteFruitsList.indexOf(fruitName);
+    if (index > -1) {
+      favoriteFruitsList.splice(index, 1);
+    } else {
+      favoriteFruitsList.push(fruitName);
+    }
+    localStorage.setItem(
+      "favoriteFruitsNamesList",
+      JSON.stringify(favoriteFruitsList)
+    );
+    dispatch({
+      type: "WRITE_FAVORITE_FRUITS_SUCCESS",
+      payload: favoriteFruitsList,
+    });
+  } catch (error) {
+    dispatch({ type: "WRITE_FAVORITE_FRUITS_FAILED", payload: error });
   }
-  localStorage.setItem(
-    "favoriteFruitsNamesList",
-    JSON.stringify(favoriteFruitsNamesList)
-  );
-  // .then((response) => response.json())
-  // .then((data) => {
-  //   dispatch({ type: "REQUEST_FRUITS_SUCCESS", payload: data.fruitsList });
-  // })
-  // .catch((error) => {
-  //   dispatch({ type: "REQUEST_FRUITS_FAILED", payload: error });
-  // });
+};
+
+// Action-creator this is reading Favorite-Fruits-list
+// from the localStorage
+
+export const readLocalFavoriteFruitsActionCreator = () => (dispatch) => {
+  try {
+    dispatch({ type: "READ_FAVORITE_FRUITS_PENDING" });
+    let storedFruits;
+    storedFruits = JSON.parse(localStorage.getItem("favoriteFruitsNamesList"));
+    dispatch({
+      type: "READ_FAVORITE_FRUITS_SUCCESS",
+      payload: storedFruits,
+    });
+  } catch (error) {
+    dispatch({ type: "READ_FAVORITE_FRUITS_FAILED", payload: error });
+  }
 };
 
 // Action-creator posting login details to the API
