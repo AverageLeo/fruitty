@@ -4,9 +4,19 @@ import { connect } from "react-redux";
 import styles from "./FruitDetails.module.css";
 
 class FruitDetails extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      starButton: false,
+    };
+  }
 
   render() {
+    const toggleStarColor = () => {
+      const currentState = this.state.starButton;
+      this.setState({ starButton: !currentState });
+    };
+
     const fruitInfo = {
       ...this.props.fruits.find((fruit) => {
         return fruit.name.toLowerCase() === this.props.match.params.name;
@@ -31,7 +41,17 @@ class FruitDetails extends Component {
             <h2>Fruit Info</h2>
             <img className={styles.image} src={imageLink} alt="fruit" />
             <h2>{this.props.match.params.name.toUpperCase()}</h2>
-            <button className={styles.starButton + " fa fa-star"} />
+            {/* Favorite Star - toggle the fruit name inside the
+              Favorite Fruits array */}
+            <button
+              className={
+                this.state.starButton
+                  ? styles.starYellow + " fa fa-star"
+                  : styles.starButton + " fa fa-star"
+              }
+              onClick={toggleStarColor}
+            />
+
             <a
               href={`https://en.wikipedia.org/wiki/${this.props.match.params.name}`}
             >

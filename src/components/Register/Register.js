@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Register.module.css";
-import Image from "../Fruits/FruitDetails/Red Apple.png";
+import Image from "../../assets/fruits.png";
 
 class Register extends Component {
   state = {

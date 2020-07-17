@@ -30,6 +30,23 @@
   width: 160px;
 }
 
+.starYellow {
+  background-color: transparent;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: 1px solid #000;
+  transition: ease-in 0.2s;
+  margin: 20px 10px;
+  width: 160px;
+  color: rgb(228, 225, 47);
+}
+
+.starYellow,
+.starButton:focus {
+  outline: 0;
+}
+
 .image {
   border: 1px solid black;
   width: 150px;

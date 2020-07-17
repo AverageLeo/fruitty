@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import styles from "./Login.module.css";
-import Image from "../Fruits/FruitDetails/Red Apple.png";
+import Image from "../../assets/fruits.png";
 import { loginUserActionCreator } from "../../actions/actions";
 
 class Login extends Component {
