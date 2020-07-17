@@ -19,6 +19,23 @@ export const requestFruitsActionCreator = () => (dispatch) => {
     });
 };
 
+// Action-creator this is fetching Favorite-Fruits-list
+// from the localStorage
+
+export const writeLocalFavoriteFruitsActionCreator = () => (dispatch) => {
+  dispatch({ type: "REQUEST_FRUITS_PENDING" });
+  const favoriteFruitsNamesList = ["Orange", "Apple", "Tomato"];
+  localStorage
+    .setItem("favoriteFruitsNamesList", JSON.stringify(favoriteFruitsNamesList))
+    .then((response) => response.json())
+    .then((data) => {
+      dispatch({ type: "REQUEST_FRUITS_SUCCESS", payload: data.fruitsList });
+    })
+    .catch((error) => {
+      dispatch({ type: "REQUEST_FRUITS_FAILED", payload: error });
+    });
+};
+
 // Action-creator posting login details to the API
 // for authentication and return a response
 

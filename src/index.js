@@ -4,7 +4,11 @@ import "./index.css";
 import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
 import thunkMiddlewareS from "redux-thunk";
-import { requestFruitsReducer, loginUserReducer } from "./reducers/reducers";
+import {
+  requestFruitsReducer,
+  loginUserReducer,
+  localFavoriteFruitsReducer,
+} from "./reducers/reducers";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 
@@ -12,6 +16,7 @@ import { Provider } from "react-redux";
 const rootReducer = combineReducers({
   requestFruitsReducer,
   loginUserReducer,
+  localFavoriteFruitsReducer,
 });
 
 // creating store with thunk to enable action creators

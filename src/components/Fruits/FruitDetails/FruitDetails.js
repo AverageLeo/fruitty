@@ -3,18 +3,24 @@ import { connect } from "react-redux";
 
 import styles from "./FruitDetails.module.css";
 
-class FruitDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      starButton: false,
-    };
-  }
+const storedFruits = JSON.parse(
+  localStorage.getItem("favoriteFruitsNamesList")
+);
 
+class FruitDetails extends Component {
   render() {
-    const toggleStarColor = () => {
-      const currentState = this.state.starButton;
-      this.setState({ starButton: !currentState });
+    // const toggleStarColor = () => {
+    //   const currentState = this.state.starButton;
+    //   this.setState({ starButton: !currentState });
+    // };
+
+    const isFruitFavorited = () => {
+      console.log(("storedFruits", storedFruits), "fruitInfo:", fruitInfo.name);
+      console.log(storedFruits.includes(fruitInfo.name));
+      // const currentState = this.state.starButton;
+      // if (storedFruits.includes(fruitInfo.name)) {
+      //   this.setState({ starButton: !currentState });
+      // }
     };
 
     const fruitInfo = {
@@ -24,6 +30,8 @@ class FruitDetails extends Component {
     };
     const imageLink = `${fruitInfo.urlImage}`;
     const fruitNutritions = { ...fruitInfo.nutritions };
+
+    isFruitFavorited();
 
     return (
       <div className="fruitsDetails">
@@ -45,11 +53,11 @@ class FruitDetails extends Component {
               Favorite Fruits array */}
             <button
               className={
-                this.state.starButton
+                storedFruits.includes(fruitInfo.name)
                   ? styles.starYellow + " fa fa-star"
                   : styles.starButton + " fa fa-star"
               }
-              onClick={toggleStarColor}
+              // onClick={toggleStarColor}
             />
 
             <a

@@ -95,3 +95,47 @@ export const loginUserReducer = (state = initialStateLogin, action = {}) => {
 //       return state;
 //   }
 // };
+
+const initialStateFavoriteFruits = {
+  isPending: false,
+  favoriteFruits: [],
+  error: "",
+};
+
+export const localFavoriteFruitsReducer = (
+  state = initialStateFavoriteFruits,
+  action = {}
+) => {
+  switch (action.type) {
+    case "REQUEST_FAVORITE_FRUITS_PENDING":
+      return Object.assign({}, state, { isPending: true });
+
+    case "REQUEST_FAVORITE_FRUITS_SUCCESS":
+      return Object.assign({}, state, {
+        favoriteFruits: action.payload,
+        isPending: false,
+      });
+
+    case "REQUEST_FAVORITE_FRUITS_FAILED":
+      return Object.assign({}, state, {
+        error: action.payload,
+        isPending: false,
+      });
+    case "SEND_FAVORITE_FRUITS_PENDING":
+      return Object.assign({}, state, { isPending: true });
+
+    case "SEND_FAVORITE_FRUITS_SUCCESS":
+      return Object.assign({}, state, {
+        favoriteFruits: action.payload,
+        isPending: false,
+      });
+
+    case "SEND_FAVORITE_FRUITS_FAILED":
+      return Object.assign({}, state, {
+        error: action.payload,
+        isPending: false,
+      });
+    default:
+      return state;
+  }
+};
