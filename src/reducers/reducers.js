@@ -107,30 +107,30 @@ export const localFavoriteFruitsReducer = (
   action = {}
 ) => {
   switch (action.type) {
-    case "REQUEST_FAVORITE_FRUITS_PENDING":
+    case "READ_FAVORITE_FRUITS_PENDING":
       return Object.assign({}, state, { isPending: true });
 
-    case "REQUEST_FAVORITE_FRUITS_SUCCESS":
+    case "READ_FAVORITE_FRUITS_SUCCESS":
       return Object.assign({}, state, {
         favoriteFruits: action.payload,
         isPending: false,
       });
 
-    case "REQUEST_FAVORITE_FRUITS_FAILED":
+    case "READ_FAVORITE_FRUITS_FAILED":
       return Object.assign({}, state, {
         error: action.payload,
         isPending: false,
       });
-    case "SEND_FAVORITE_FRUITS_PENDING":
+    case "WRITE_FAVORITE_FRUITS_PENDING":
       return Object.assign({}, state, { isPending: true });
 
-    case "SEND_FAVORITE_FRUITS_SUCCESS":
+    case "WRITE_FAVORITE_FRUITS_SUCCESS":
       return Object.assign({}, state, {
         favoriteFruits: action.payload,
         isPending: false,
       });
 
-    case "SEND_FAVORITE_FRUITS_FAILED":
+    case "WRITE_FAVORITE_FRUITS_FAILED":
       return Object.assign({}, state, {
         error: action.payload,
         isPending: false,

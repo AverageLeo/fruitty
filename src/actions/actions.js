@@ -1,6 +1,8 @@
 // Action-creator this is fetching Fruits-list
 // and dispaching an action to the reducer accordingly
 
+import fruit from "../components/Fruits/Fruit/Fruit";
+
 export const requestFruitsActionCreator = () => (dispatch) => {
   dispatch({ type: "REQUEST_FRUITS_PENDING" });
   fetch("http://localhost:3003/getFruits", {
@@ -22,18 +24,26 @@ export const requestFruitsActionCreator = () => (dispatch) => {
 // Action-creator this is fetching Favorite-Fruits-list
 // from the localStorage
 
-export const writeLocalFavoriteFruitsActionCreator = () => (dispatch) => {
-  dispatch({ type: "REQUEST_FRUITS_PENDING" });
-  const favoriteFruitsNamesList = ["Orange", "Apple", "Tomato"];
-  localStorage
-    .setItem("favoriteFruitsNamesList", JSON.stringify(favoriteFruitsNamesList))
-    .then((response) => response.json())
-    .then((data) => {
-      dispatch({ type: "REQUEST_FRUITS_SUCCESS", payload: data.fruitsList });
-    })
-    .catch((error) => {
-      dispatch({ type: "REQUEST_FRUITS_FAILED", payload: error });
-    });
+export const writeLocalFavoriteFruitsActionCreator = (
+  fruitName,
+  favoriteFruitsList
+) => (dispatch) => {
+  // dispatch({ type: "REQUEST_FRUITS_PENDING" });
+  let updatedFavoriteFruitsList;
+  if (favoriteFruitsList.find(fruitName)) {
+    updatedFavoriteFruitsList = favoriteFruitsList;
+  }
+  localStorage.setItem(
+    "favoriteFruitsNamesList",
+    JSON.stringify(favoriteFruitsNamesList)
+  );
+  // .then((response) => response.json())
+  // .then((data) => {
+  //   dispatch({ type: "REQUEST_FRUITS_SUCCESS", payload: data.fruitsList });
+  // })
+  // .catch((error) => {
+  //   dispatch({ type: "REQUEST_FRUITS_FAILED", payload: error });
+  // });
 };
 
 // Action-creator posting login details to the API
