@@ -45,7 +45,10 @@ class FruitDetails extends Component {
                   this.props.favoriteFruitsNamesList
                 );
               }}
-            />
+            >
+              {" "}
+              Favorite
+            </button>
 
             <a
               href={`https://en.wikipedia.org/wiki/${this.props.match.params.name}`}

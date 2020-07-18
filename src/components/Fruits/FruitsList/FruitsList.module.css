@@ -1,3 +1,10 @@
+.title {
+  font-family: "Bree Serif", serif;
+  font-size: 3rem;
+  margin: 2rem;
+  border-bottom: 2px solid rgba(112, 112, 112, 0.3);
+}
+
 .fruitsBox {
   display: flex;
   justify-content: center;
@@ -17,6 +24,11 @@
   padding: 5px;
   border: 1px solid lightgray;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.fruitsBox li:hover {
+  background-color: rgb(221, 255, 208);
 }
 
 .fruitsBox h4 {
@@ -39,8 +51,4 @@
   background-color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
   padding: 0.6rem 1.1rem;
-}
-
-.active {
-  color: blue;
 }

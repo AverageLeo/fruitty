@@ -7,7 +7,7 @@ const fruit = ({ fruitDetails }) => {
       <div className="fruit">
         <div>
           <h4>
-            {fruitDetails.name} {">"}
+            {fruitDetails.name} <span className={styles.arrow}>{">"}</span>
           </h4>
         </div>
       </div>

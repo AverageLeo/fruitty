@@ -27,7 +27,7 @@ const Favorites = (props) => {
   return (
     <div className="favorites">
       <div className="heading2">
-        <h2>Favorites</h2>
+        <div className={styles.title}>Favorites</div>
         <NavLink to="/getFruits">
           <button className={styles.fruitButtons}>Fruits</button>
         </NavLink>

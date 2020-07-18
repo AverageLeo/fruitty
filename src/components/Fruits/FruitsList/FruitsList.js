@@ -9,7 +9,7 @@ const fruitsList = (props) => {
   return (
     <div className="fruitsList">
       <div className="heading2">
-        <h2>Fruits List</h2>
+        <div className={styles.title}>Fruits List</div>
         <NavLink to="/getFruits">
           <button className={styles.fruitButtons}>Fruits</button>
         </NavLink>
