@@ -1,5 +1,11 @@
 .heading {
-  font-size: 2rem;
+  font-size: 5rem;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 5px;
+  font-family: "Bree Serif", serif;
+}
+.heading h2 {
+  margin: 2rem 0 1rem 0;
 }
 
 .input input {

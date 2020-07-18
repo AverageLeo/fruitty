@@ -3,9 +3,24 @@ import { connect } from "react-redux";
 
 import styles from "./FruitDetails.module.css";
 import { writeLocalFavoriteFruitsActionCreator } from "../../../actions/actions";
+import NutritionRow from "./NutritionRow/NutritionRow";
 
 class FruitDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      editMode: false,
+    };
+  }
+
   render() {
+    const arrayHtmlcollection = document.getElementsByClassName(
+      "nutritionsInfo"
+    );
+    const arrayArray = [].slice.call(arrayHtmlcollection);
+    console.log(arrayArray);
+
     const fruitInfo = {
       ...this.props.fruits.find((fruit) => {
         return fruit.name.toLowerCase() === this.props.match.params.name;
@@ -73,27 +88,47 @@ class FruitDetails extends Component {
                   <b>Order:</b> {fruitInfo.order}
                 </li>
               </ul>
-              <h3>Nutrition</h3>
-              <ul>
-                <li>
-                  <b>Calories:</b> {fruitNutritions.calories}
-                </li>
-                <li>
-                  <b>Carbs:</b> {fruitNutritions.carbohydrates}
-                </li>
-                <li>
-                  <b>Fat:</b> {fruitNutritions.fat}
-                </li>
-                <li>
-                  <b>Protein:</b> {fruitNutritions.protein}
-                </li>
-                <li>
-                  <b>Sugar:</b> {fruitNutritions.sugar}
-                </li>
-                <li>Lorem, ipsum.</li>
-                <li>Lorem, ipsum.</li>
-                <li>Lorem, ipsum.</li>
-              </ul>
+              <form className={styles.form}>
+                <h3>Nutrition</h3>
+                <div className={styles.iconsRow}>
+                  <span className={styles.editLogo + " far fa-plus-square"} />
+                  <span
+                    className={styles.editLogo + " fas fa-pencil-alt"}
+                    onClick={() => {
+                      if (this.state.editMode === false) {
+                        this.setState({ editMode: true });
+                      } else {
+                        this.setState({ editMode: false });
+                        // fetch("localhost:3003/fruit/:id/updateNutrition", {
+                        //   method: "POST",
+                        //   body: new FormData(
+                        //     document.getElementsByClassName(styles.form)
+                        //   ),
+                        // })
+                        //   .then((response) => response.text())
+                        //   .then((html) => console.log(html))
+                        //   .catch((error) => {
+                        //     console.log(error);
+                        //   });
+                      }
+                    }}
+                  />
+                </div>
+                Edit mode is <b>{this.state.editMode ? "On" : "Off"}</b>
+                {Object.keys(fruitNutritions).map((row) => {
+                  return (
+                    <NutritionRow
+                      nutritionsName={row}
+                      nutritionsValue={fruitNutritions[row]}
+                      editMode={this.state.editMode}
+                      key={fruitNutritions[row]}
+                    />
+                  );
+                })}
+                <label>Lorem, ipsum.</label>
+                <label>Lorem, ipsum.</label>
+                <label>Lorem, ipsum.</label>
+              </form>
             </div>
           </div>
         </div>

@@ -68,6 +68,7 @@
 
 ul {
   width: 60%;
+  padding-inline-end: 40px;
 }
 
 li {
@@ -98,4 +99,27 @@ li {
 
 .wikiLogo {
   margin-right: 5px;
+}
+
+.iconsRow {
+  width: 100%;
+  text-align: right;
+}
+
+.editLogo {
+  cursor: pointer;
+  margin: 5px;
+  font-size: 1.1rem;
+}
+
+.form {
+  width: 60%;
+}
+
+label {
+  display: inline-block;
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid lightgray;
 }

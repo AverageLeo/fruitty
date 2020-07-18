@@ -12,7 +12,7 @@
 .footer--text {
   font-family: "Arial";
   position: absolute;
-  color: rgb(70, 94, 74);
+  color: rgba(70, 94, 74, 0.5);
   bottom: 1rem;
   text-align: center;
   width: 100%;
@@ -21,13 +21,14 @@
 
 .footer--text a {
   text-decoration: none;
-  color: rgb(60, 104, 55);
+  color: rgba(70, 94, 74, 0.6);
   margin: 0 0.5rem;
-  transition: font-size 0.25s ease-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .footer--text a:hover {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  color: rgba(117, 173, 54, 0.8);
 }
 
 .footer--margin--left {

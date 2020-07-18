@@ -1,3 +1,7 @@
+.li {
+  margin: 0.8rem;
+}
+
 .li h4 {
   font-family: "Roboto Slab", serif;
   list-style: none;
