@@ -19,7 +19,11 @@ class FruitDetails extends Component {
       "nutritionsInfo"
     );
     const arrayArray = [].slice.call(arrayHtmlcollection);
-    console.log(arrayArray);
+    let arrayArray2;
+    if (arrayArray.length) {
+      arrayArray2 = arrayArray.value;
+    }
+    console.log(arrayArray2);
 
     const fruitInfo = {
       ...this.props.fruits.find((fruit) => {
@@ -67,6 +71,8 @@ class FruitDetails extends Component {
 
             <a
               href={`https://en.wikipedia.org/wiki/${this.props.match.params.name}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <button className={styles.wikiButton}>
                 <i className={styles.wikiLogo + " fab fa-wikipedia-w"} />
