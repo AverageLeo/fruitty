@@ -4,14 +4,13 @@ import { connect } from "react-redux";
 
 import styles from "./Favorites.module.css";
 import Fruit from "../Fruit/Fruit";
-import { readLocalFavoriteFruitsActionCreator } from "../../../actions/actions";
 
 const Favorites = (props) => {
   const getFavoriteFruitsItems = () => {
     const favoriteFruits = props.fruits.filter((fruit) => {
       return props.favoriteFruitsNamesList.includes(fruit.name);
     });
-    return favoriteFruits.map((fruit, i) => {
+    return favoriteFruits.map((fruit) => {
       return (
         <Link
           to={`/fruitdetails/${fruit.name.toLowerCase()}`}
@@ -43,14 +42,6 @@ const Favorites = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onFavoriteClick: () => {
-      return dispatch(readLocalFavoriteFruitsActionCreator());
-    },
-  };
-};
-
 const mapStateToProps = (state) => {
   return {
     fruits: state.requestFruitsReducer.fruits,
@@ -59,4 +50,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export default connect(mapStateToProps)(Favorites);

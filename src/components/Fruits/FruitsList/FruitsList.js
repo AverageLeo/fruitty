@@ -18,7 +18,7 @@ const fruitsList = (props) => {
         </NavLink>
         <div className={styles.fruitsBox}>
           <ul>
-            {props.fruits.map((fruit, i) => {
+            {props.fruits.map((fruit) => {
               return (
                 <Link
                   to={`/fruitdetails/${fruit.name.toLowerCase()}`}

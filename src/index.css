@@ -6,7 +6,7 @@ html {
       rgba(213, 253, 198, 0.7)
     ),
     url("./assets/doodle.png");
-  background-repeat: repeat; /* Do not repeat the image */
+  background-repeat: repeat;
   background-size: auto;
 }
 
@@ -19,11 +19,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 button {

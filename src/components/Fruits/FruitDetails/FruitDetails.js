@@ -28,11 +28,8 @@ class FruitDetails extends Component {
     const updatedFruit = Object.assign({}, fruitInfo, {
       nutritions: { ...updatefruitNutritions },
     });
-    console.log(this.props);
-    // TODO call same action Creator to update store and send to api
-    this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
 
-    // console.log("id:", updatedFruit.id, "fruit:", updatedFruit);
+    this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
   }
 
   addNutritionHandler(fruits) {
@@ -45,8 +42,6 @@ class FruitDetails extends Component {
       nutritions: { ...fruitInfo.nutritions, "Hello There": "0" },
     });
 
-    // TODO call same action Creator to update store and send to api
-    console.log(this.props);
     this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
   }
 
@@ -62,8 +57,8 @@ class FruitDetails extends Component {
     // Zip values to names
     const updatedNutritions = Object.assign(
       {},
-      ...updatedNutritionsNames.map((name, indexOfCorrespondingValue) => ({
-        [name]: updatedNutritionsValues[indexOfCorrespondingValue],
+      ...updatedNutritionsNames.map((name, indexOf) => ({
+        [name]: updatedNutritionsValues[indexOf],
       }))
     );
 
@@ -77,7 +72,6 @@ class FruitDetails extends Component {
       nutritions: updatedNutritions,
     });
 
-    // TODO call action Creator to update store and send to api
     this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
   }
 
@@ -164,7 +158,7 @@ class FruitDetails extends Component {
                       } else {
                         this.setState({ editMode: false });
 
-                        // handle exit edit mode by updating fruits in state and api
+                        // Handle exit edit mode by updating fruits in store and api
                         this.editNutritionsHandler();
                       }
                     }}

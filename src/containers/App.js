@@ -32,7 +32,6 @@ class App extends Component {
   // fetch fruits upon reload
   componentDidMount() {
     this.props.onRequestFruits();
-    // console.log(this.props.user);
   }
 
   componentDidUpdate() {
@@ -59,9 +58,13 @@ class App extends Component {
     let Button;
     if (this.props.user) {
       Button = (
-        <button onClick={this.logoutHandler} className="logoutButton">
-          Log-out
-        </button>
+        <div>
+          {" "}
+          Hello {this.props.user.name}!
+          <button onClick={this.logoutHandler} className="logoutButton">
+            Log-out
+          </button>
+        </div>
       );
     } else {
       Button = null;
@@ -89,7 +92,7 @@ class App extends Component {
   }
 }
 
-// mapping requestFruitsActionCreator to App props
+// Mapping requestFruitsActionCreator to App props
 const mapDispatchToProps = (dispatch) => {
   return {
     onRequestFruits: () => {

@@ -68,6 +68,7 @@ class Login extends Component {
             type="submit"
             className={styles.button}
             onClick={(event) => {
+              // PreventDefault helps against form default behavior of re-rendering
               event.preventDefault();
               this.onSubmitSignIn();
             }}

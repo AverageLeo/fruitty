@@ -87,33 +87,6 @@ export const loginUserReducer = (state = initialStateLogin, action = {}) => {
   }
 };
 
-// const initialStateLogout = {
-//   isPending: false,
-//   user: "",
-//   error: "",
-// };
-
-// export const logoutUserReducer = (state = initialStateLogout, action = {}) => {
-//   switch (action.type) {
-//     case "USER_LOGOUT_PENDING":
-//       return Object.assign({}, state, { isPending: true });
-
-//     case "USER_LOGOUT_SUCCESS":
-//       return Object.assign({}, state, {
-//         user: null,
-//         isPending: false,
-//       });
-
-//     case "USER_LOGOUT_FAILED":
-//       return Object.assign({}, state, {
-//         error: action.payload,
-//         isPending: false,
-//       });
-//     default:
-//       return state;
-//   }
-// };
-
 const initialStateFavoriteFruits = {
   isPending: false,
   favoriteFruitsNamesList: [],
@@ -157,28 +130,3 @@ export const localFavoriteFruitsReducer = (
       return state;
   }
 };
-
-// export const updateNutritionReducer = (
-//   state = initialStateFruits,
-//   action = {}
-// ) => {
-//   switch (action.type) {
-//     case "NUTRITION_CHANGE_PENDING":
-//       return Object.assign({}, state, { isPending: true });
-
-//     case "NUTRITION_CHANGE_SUCCESS":
-//       console.log(action.payload);
-//       return Object.assign({}, state, {
-//         fruit: action.payload,
-//         isPending: false,
-//       });
-
-//     case "NUTRITION_CHANGE_FAILED":
-//       return Object.assign({}, state, {
-//         error: action.payload,
-//         isPending: false,
-//       });
-//     default:
-//       return state;
-//   }
-// };
