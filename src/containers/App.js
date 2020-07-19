@@ -32,27 +32,23 @@ class App extends Component {
   // fetch fruits upon reload
   componentDidMount() {
     this.props.onRequestFruits();
+    // console.log(this.props.user);
   }
 
   componentDidUpdate() {
-    // const publicUrls = ["/login", "/register", "/404"];
-    // const closeForUsersUrls = ["/login", "/register"];
-    // const url = this.props.history.location.pathname;
-    // if (!this.props.user) {
-    //   if (!publicUrls.includes(url.toLowerCase())) {
-    //     this.props.history.push("/login");
-    //   }
-    // }
-    // console.log(url);
-    // console.log(this.props.user);
-    // console.log(this.props.history);
-    // else if (
-    //   closeForUsersUrls.includes(url.toLowerCase()) &&
-    //   this.props.user
-    // ) {
-    //   console.log(url);
-    //   // this.props.history.push("/getFruits");
-    // }
+    console.log(this.props.user);
+    const publicUrls = ["/login", "/register", "/404"];
+    const closeForUsersUrls = ["/login", "/register"];
+    const url = this.props.history.location.pathname;
+    if (!this.props.user) {
+      if (!publicUrls.includes(url.toLowerCase())) {
+        this.props.history.push("/login");
+      }
+    } else {
+      if (closeForUsersUrls.includes(url.toLowerCase())) {
+        // TODO If user is logged in and route is login, change to getfruits
+      }
+    }
   }
 
   logoutHandler = () => {
@@ -63,12 +59,9 @@ class App extends Component {
     let Button;
     if (this.props.user) {
       Button = (
-        <div>
-          Welcome {this.props.user.name}
-          <button onClick={this.logoutHandler} className="logoutButton">
-            Log-out
-          </button>
-        </div>
+        <button onClick={this.logoutHandler} className="logoutButton">
+          Log-out
+        </button>
       );
     } else {
       Button = null;

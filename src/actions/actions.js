@@ -1,13 +1,14 @@
 // Action-creator this is fetching Fruits-list
 // and dispaching an action to the reducer accordingly
 
-export const requestFruitsActionCreator = () => (dispatch) => {
+export const requestFruitsActionCreator = (token) => (dispatch) => {
   dispatch({ type: "REQUEST_FRUITS_PENDING" });
   fetch("http://localhost:3003/getFruits", {
     method: "GET",
     mode: "cors",
     headers: {
       "Access-Control-Allow-Origin": "*",
+      Authorization: "Bearer " + token,
     },
   })
     .then((response) => response.json())
