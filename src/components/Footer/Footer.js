@@ -16,7 +16,10 @@ const footer = () => {
           <i className="fas fa-envelope" />
         </a>
         <a href="https://arielevental.com">
-          <i className="fas fa-beer footer--margin--right"></i>
+          <i className="fas fa-beer"></i>
+        </a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          <i className="fab fa-youtube footer--margin--right"></i>
         </a>
         All Rights Reserved
       </div>

@@ -1,4 +1,5 @@
-.Input {
+.Input,
+.InputName {
   width: 40px;
   border: 1px dotted rgb(162, 196, 151);
   background-color: rgb(217, 243, 208);
@@ -6,6 +7,10 @@
   font: inherit;
   padding: unset;
   margin-left: 3px;
+}
+
+.InputName {
+  width: 120px;
 }
 
 .deleteIcon {
