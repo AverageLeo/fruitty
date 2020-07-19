@@ -5,7 +5,6 @@ const footer = () => {
   return (
     <div className="footer">
       <div className="footer--text">
-        Made by Arie Levental
         <a href="https://www.linkedin.com/in/arie-levental/">
           <i className="fab fa-linkedin footer--margin--left" />
         </a>
@@ -21,7 +20,6 @@ const footer = () => {
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
           <i className="fab fa-youtube footer--margin--right"></i>
         </a>
-        All Rights Reserved
       </div>
     </div>
   );

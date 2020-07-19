@@ -2,12 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import styles from "./FruitDetails.module.css";
-import { writeLocalFavoriteFruitsActionCreator } from "../../../actions/actions";
+import {
+  writeLocalFavoriteFruitsActionCreator,
+  nutritionRowChangeActionCreator,
+} from "../../../actions/actions";
 import NutritionRow from "./NutritionRow/NutritionRow";
 
 class FruitDetails extends Component {
   constructor(props) {
     super(props);
+    this.nutritionsInfoRowDeleteHandler = this.nutritionsInfoRowDeleteHandler.bind(
+      this
+    );
+    this.addNutritionHandler = this.addNutritionHandler.bind(this);
+    this.editNutritionsHandler = this.editNutritionsHandler.bind(this);
     this.state = {
       editMode: false,
       fruitInfo: null,
@@ -20,9 +28,11 @@ class FruitDetails extends Component {
     const updatedFruit = Object.assign({}, fruitInfo, {
       nutritions: { ...updatefruitNutritions },
     });
-
+    console.log(this.props);
     // TODO call same action Creator to update store and send to api
-    console.log(updatedFruit);
+    this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
+
+    // console.log("id:", updatedFruit.id, "fruit:", updatedFruit);
   }
 
   addNutritionHandler(fruits) {
@@ -36,7 +46,8 @@ class FruitDetails extends Component {
     });
 
     // TODO call same action Creator to update store and send to api
-    console.log(updatedFruit);
+    console.log(this.props);
+    this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
   }
 
   editNutritionsHandler() {
@@ -67,7 +78,7 @@ class FruitDetails extends Component {
     });
 
     // TODO call action Creator to update store and send to api
-    console.log(updatedFruit);
+    this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
   }
 
   render() {
@@ -174,7 +185,7 @@ class FruitDetails extends Component {
                       nutritionsName={row}
                       nutritionsValue={fruitNutritions[row]}
                       editMode={this.state.editMode}
-                      key={fruitNutritions[row]}
+                      key={Math.floor(Math.random() * 10000000)}
                     />
                   );
                 })}
@@ -194,12 +205,17 @@ const mapDispatchToProps = (dispatch) => {
         writeLocalFavoriteFruitsActionCreator(fruitName, favoriteFruitsList)
       );
     },
+    onNutritionRowChange: (updatedFruitID, updatedFruit) => {
+      return dispatch(
+        nutritionRowChangeActionCreator(updatedFruitID, updatedFruit)
+      );
+    },
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    fruits: state.requestFruitsReducer.fruits,
+    fruits: [...state.requestFruitsReducer.fruits],
     favoriteFruitsNamesList: [
       ...state.localFavoriteFruitsReducer.favoriteFruitsNamesList,
     ],

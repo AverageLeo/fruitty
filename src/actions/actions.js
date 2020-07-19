@@ -116,3 +116,32 @@ export const logoutUserActionCreator = (token) => (dispatch) => {
       dispatch({ type: "USER_LOGOUT_FAILED", payload: error });
     });
 };
+
+export const nutritionRowChangeActionCreator = (id, updatedFruit) => (
+  dispatch
+) => {
+  dispatch({ type: "NUTRITION_CHANGE_PENDING" });
+  fetch(`http://localhost:3003/fruit/${id}/updateNutrition`, {
+    method: "post",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedFruit),
+  })
+    .then(function (response) {
+      return response.json().then(function (data) {
+        if (data.error) {
+          dispatch({ type: "NUTRITION_CHANGE_FAILED", payload: data.error });
+          // console.log(data);
+        } else {
+          dispatch({ type: "NUTRITION_CHANGE_SUCCESS", payload: updatedFruit });
+          // console.log(data);
+        }
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch({ type: "NUTRITION_CHANGE_FAILED", payload: error });
+    });
+};

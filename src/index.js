@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./containers/App";
+import { HashRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 import thunkMiddlewareS from "redux-thunk";
 import {
@@ -25,7 +26,9 @@ const store = createStore(rootReducer, applyMiddleware(thunkMiddlewareS));
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

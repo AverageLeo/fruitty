@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import {
+  withRouter,
+  HashRouter,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 import {
   requestFruitsActionCreator,
@@ -29,8 +35,23 @@ class App extends Component {
   }
 
   componentDidUpdate() {
+    // const publicUrls = ["/login", "/register", "/404"];
+    // const closeForUsersUrls = ["/login", "/register"];
+    // const url = this.props.history.location.pathname;
     // if (!this.props.user) {
-    //   this.props.history.push("/login");
+    //   if (!publicUrls.includes(url.toLowerCase())) {
+    //     this.props.history.push("/login");
+    //   }
+    // }
+    // console.log(url);
+    // console.log(this.props.user);
+    // console.log(this.props.history);
+    // else if (
+    //   closeForUsersUrls.includes(url.toLowerCase()) &&
+    //   this.props.user
+    // ) {
+    //   console.log(url);
+    //   // this.props.history.push("/getFruits");
     // }
   }
 
@@ -42,14 +63,17 @@ class App extends Component {
     let Button;
     if (this.props.user) {
       Button = (
-        <button onClick={this.logoutHandler} className="logoutButton">
-          Log-out
-        </button>
+        <div>
+          Welcome {this.props.user.name}
+          <button onClick={this.logoutHandler} className="logoutButton">
+            Log-out
+          </button>
+        </div>
       );
     } else {
       Button = null;
     }
-    // console.log(this.props.user);
+
     return (
       <HashRouter>
         <div className="App">
@@ -62,7 +86,7 @@ class App extends Component {
               <Route path="/fruitDetails/:name" component={FruitDetails} />
               <Route path="/favorites" component={Favorites} />
               <Redirect exact from="/" to="/login" />
-              <Route component={NotFound} />
+              <Route path="/404" component={NotFound} />
             </Switch>
           </div>
           <Footer />
@@ -93,4 +117,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

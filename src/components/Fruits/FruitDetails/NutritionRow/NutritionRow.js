@@ -31,12 +31,12 @@ const nutritionRow = (props) => {
             className={
               styles.deleteIcon + " far fa-minus-square nutritionsInfoRowDelete"
             }
-            onClick={() =>
+            onClick={() => {
               props.nutritionsInfoRowDeleteHandler(
                 props.nutritionsName,
                 props.fruitInfo
-              )
-            }
+              );
+            }}
           />
         </label>
       ) : (

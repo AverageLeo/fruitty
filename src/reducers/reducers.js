@@ -23,6 +23,23 @@ export const requestFruitsReducer = (
         error: action.payload,
         isPending: false,
       });
+
+    case "NUTRITION_CHANGE_PENDING":
+      return Object.assign({}, state, { isPending: true });
+
+    case "NUTRITION_CHANGE_SUCCESS":
+      const updatedFruits = [...state.fruits].map((fruit) =>
+        fruit.name.toLowerCase() === action.payload.name.toLowerCase()
+          ? action.payload
+          : fruit
+      );
+      return Object.assign({}, state, { fruits: updatedFruits });
+
+    case "NUTRITION_CHANGE_FAILED":
+      return Object.assign({}, state, {
+        error: action.payload,
+        isPending: false,
+      });
     default:
       return state;
   }
@@ -64,6 +81,7 @@ export const loginUserReducer = (state = initialStateLogin, action = {}) => {
         error: action.payload,
         isPending: false,
       });
+
     default:
       return state;
   }
@@ -139,3 +157,28 @@ export const localFavoriteFruitsReducer = (
       return state;
   }
 };
+
+// export const updateNutritionReducer = (
+//   state = initialStateFruits,
+//   action = {}
+// ) => {
+//   switch (action.type) {
+//     case "NUTRITION_CHANGE_PENDING":
+//       return Object.assign({}, state, { isPending: true });
+
+//     case "NUTRITION_CHANGE_SUCCESS":
+//       console.log(action.payload);
+//       return Object.assign({}, state, {
+//         fruit: action.payload,
+//         isPending: false,
+//       });
+
+//     case "NUTRITION_CHANGE_FAILED":
+//       return Object.assign({}, state, {
+//         error: action.payload,
+//         isPending: false,
+//       });
+//     default:
+//       return state;
+//   }
+// };

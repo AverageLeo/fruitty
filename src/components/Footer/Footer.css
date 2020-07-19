@@ -38,3 +38,7 @@
 .footer--margin--right {
   margin-right: 25px;
 }
+
+.fa-youtube {
+  color: rgba(255, 0, 0, 0.4);
+}
