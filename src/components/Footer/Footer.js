@@ -1,27 +1,49 @@
 import React from "react";
-import "./Footer.css";
+import styled from "styled-components";
 
-const footer = () => {
+const FooterSection = styled.footer`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 2.5rem;
+  bottom: 1rem;
+  z-index: 2;
+`;
+
+const Icon = styled.a`
+  text-decoration: none;
+  color: rgba(70, 94, 74, 0.6);
+  margin: 0 0.5rem;
+  transition: all 0.2s ease-in-out;
+  color: ${(props) =>
+    props.red ? "rgba(255, 0, 0, 0.4)" : "rgba(70, 94, 74, 0.5)"};
+  font-size: 1.1rem;
+  :hover {
+    font-size: 1.5rem;
+    color: rgba(117, 173, 54, 0.8);
+  }
+`;
+
+const footer = (props) => {
   return (
-    <div className="footer">
-      <div className="footer--text">
-        <a href="https://www.linkedin.com/in/arie-levental/">
-          <i className="fab fa-linkedin footer--margin--left" />
-        </a>
-        <a href="https://github.com/AverageLeo">
-          <i className="fab fa-github" />
-        </a>
-        <a href="mailto:arieka39@gmail.com">
-          <i className="fas fa-envelope" />
-        </a>
-        <a href="https://arielevental.com">
-          <i className="fas fa-beer"></i>
-        </a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-          <i className="fab fa-youtube footer--margin--right"></i>
-        </a>
-      </div>
-    </div>
+    <FooterSection>
+      <Icon href="https://www.linkedin.com/in/arie-levental/">
+        <i className="fab fa-linkedin" />
+      </Icon>
+      <Icon href="https://github.com/AverageLeo">
+        <i className="fab fa-github" />
+      </Icon>
+      <Icon href="mailto:arieka39@gmail.com">
+        <i className="fas fa-envelope" />
+      </Icon>
+      <Icon href="https://arielevental.com">
+        <i className="fas fa-beer"></i>
+      </Icon>
+      <Icon red href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+        <i className="fab fa-youtube"></i>
+      </Icon>
+    </FooterSection>
   );
 };
 

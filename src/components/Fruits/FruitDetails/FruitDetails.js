@@ -1,12 +1,87 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import styles from "./FruitDetails.module.css";
+import styled from "styled-components";
+import Button from "../../../UI/Button";
+
 import {
   writeLocalFavoriteFruitsActionCreator,
   nutritionRowChangeActionCreator,
 } from "../../../actions/actions";
 import NutritionRow from "./NutritionRow/NutritionRow";
+
+const GoBackButton = styled(Button)`
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 20px 10px;
+`;
+
+const WikiButton = styled(Button)`
+  margin: 0 10px 10px 10px;
+  width: 160px;
+`;
+
+const TopBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+`;
+
+const StarButtonInactive = styled.button`
+  background-color: transparent;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: 1px solid #000;
+  transition: ease-in 0.2s;
+  margin: 20px 10px;
+  width: 160px;
+  :hover {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+  :focus {
+    outline: 0;
+  }
+`;
+
+const StarButtonActive = styled(StarButtonInactive)`
+  color: rgb(228, 225, 47);
+`;
+
+const TablesSection = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  ul {
+    width: 60%;
+    padding-inline-end: 40px;
+    li {
+      list-style: none;
+      padding: 5px;
+      margin: 5px;
+      border: 1px solid lightgray;
+      cursor: pointer;
+    }
+  }
+  label {
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid lightgray;
+  }
+`;
+
+const EditButton = styled.span`
+  cursor: pointer;
+  margin: 5px;
+  font-size: 1.1rem;
+`;
 
 class FruitDetails extends Component {
   constructor(props) {
@@ -86,106 +161,120 @@ class FruitDetails extends Component {
     const fruitNutritions = { ...fruitInfo.nutritions };
     return (
       <div className="fruitsDetails">
-        <button
-          className={styles.goBackButton}
+        <GoBackButton
           onClick={() => {
             this.props.history.goBack();
           }}
         >
           Go Back
-        </button>
+        </GoBackButton>
         <div className="heading2">
-          <div className={styles.top}>
+          <TopBox>
             <h2>Fruit Info</h2>
-            <img className={styles.image} src={imageLink} alt="fruit" />
+            <img
+              src={imageLink}
+              alt="fruit"
+              style={{ border: "1px solid black", width: "150px" }}
+            />
             <h2>{this.props.match.params.name.toUpperCase()}</h2>
+
             {/* Favorite Star - toggle the fruit name inside the
               Favorite Fruits array */}
-            <button
-              className={
-                this.props.favoriteFruitsNamesList.includes(fruitInfo.name)
-                  ? styles.starYellow + " fa fa-star"
-                  : styles.starButton + " fa fa-star"
-              }
-              onClick={() => {
-                this.props.onFavoriteClick(
-                  fruitInfo.name,
-                  this.props.favoriteFruitsNamesList
-                );
-              }}
-            >
-              {" "}
-              Favorite
-            </button>
+            {this.props.favoriteFruitsNamesList.includes(fruitInfo.name) ? (
+              <StarButtonActive
+                className="fa fa-star"
+                onClick={() => {
+                  this.props.onFavoriteClick(
+                    fruitInfo.name,
+                    this.props.favoriteFruitsNamesList
+                  );
+                }}
+              >
+                {" Favorite"}
+              </StarButtonActive>
+            ) : (
+              <StarButtonInactive
+                className="fa fa-star"
+                onClick={() => {
+                  this.props.onFavoriteClick(
+                    fruitInfo.name,
+                    this.props.favoriteFruitsNamesList
+                  );
+                }}
+              >
+                {" Favorite"}
+              </StarButtonInactive>
+            )}
 
             <a
               href={`https://en.wikipedia.org/wiki/${this.props.match.params.name}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className={styles.wikiButton}>
-                <i className={styles.wikiLogo + " fab fa-wikipedia-w"} />
+              <WikiButton>
+                <i
+                  className={"fab fa-wikipedia-w"}
+                  style={{ marginRight: "5px" }}
+                />
                 Show on Wiki
-              </button>
+              </WikiButton>
             </a>
-          </div>
-          <div className={styles.fruitsBox + " " + styles.infoBox}>
+          </TopBox>
+          <TablesSection>
             <h3>Overview</h3>
-            <div className={styles.tables}>
-              <ul>
-                <li>
-                  <b>Genus:</b> {fruitInfo.genus}
-                </li>
-                <li>
-                  <b>Family:</b> {fruitInfo.family}
-                </li>
-                <li>
-                  <b>Order:</b> {fruitInfo.order}
-                </li>
-              </ul>
-              <form className={styles.form}>
-                <h3>Nutrition</h3>
-                <div className={styles.iconsRow}>
-                  <span
-                    className={styles.editLogo + " far fa-plus-square"}
-                    onClick={() => this.addNutritionHandler(this.props.fruits)}
+            <ul>
+              <li>
+                <b>Genus:</b> {fruitInfo.genus}
+              </li>
+              <li>
+                <b>Family:</b> {fruitInfo.family}
+              </li>
+              <li>
+                <b>Order:</b> {fruitInfo.order}
+              </li>
+            </ul>
+            <form style={{ width: "60%" }}>
+              <h3>Nutrition</h3>
+              <div style={{ width: "100%", textAlign: "right" }}>
+                <EditButton
+                  className={"far fa-plus-square"}
+                  onClick={() => this.addNutritionHandler(this.props.fruits)}
+                />
+                <EditButton
+                  className={"fas fa-pencil-alt"}
+                  onClick={() => {
+                    if (this.state.editMode === false) {
+                      this.setState({ editMode: true });
+                    } else {
+                      this.setState({ editMode: false });
+
+                      // Handle exit edit mode by updating fruits in store and api
+                      this.editNutritionsHandler();
+                    }
+                  }}
+                />
+              </div>
+
+              {this.state.editMode
+                ? "Click again to confirm the changes!"
+                : null}
+
+              {Object.keys(fruitNutritions).map((row) => {
+                return (
+                  <NutritionRow
+                    nutritionsInfoRowDeleteHandler={
+                      this.nutritionsInfoRowDeleteHandler
+                    }
+                    fruitInfo={fruitInfo}
+                    nutritionsName={row}
+                    nutritionsValue={fruitNutritions[row]}
+                    editMode={this.state.editMode}
+                    key={Math.floor(Math.random() * 10000000)}
                   />
-                  <span
-                    className={styles.editLogo + " fas fa-pencil-alt"}
-                    onClick={() => {
-                      if (this.state.editMode === false) {
-                        this.setState({ editMode: true });
-                      } else {
-                        this.setState({ editMode: false });
-
-                        // Handle exit edit mode by updating fruits in store and api
-                        this.editNutritionsHandler();
-                      }
-                    }}
-                  />
-                </div>
-
-                {this.state.editMode
-                  ? "Click again to confirm the changes!"
-                  : null}
-
-                {Object.keys(fruitNutritions).map((row) => {
-                  return (
-                    <NutritionRow
-                      nutritionsInfoRowDeleteHandler={
-                        this.nutritionsInfoRowDeleteHandler
-                      }
-                      fruitInfo={fruitInfo}
-                      nutritionsName={row}
-                      nutritionsValue={fruitNutritions[row]}
-                      editMode={this.state.editMode}
-                      key={Math.floor(Math.random() * 10000000)}
-                    />
-                  );
-                })}
-              </form>
-            </div>
-          </div>
+                );
+              })}
+            </form>
+          </TablesSection>
         </div>
       </div>
     );

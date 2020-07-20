@@ -2,9 +2,31 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import styles from "./Login.module.css";
+import styled from "styled-components";
+import Button from "../../UI/Button";
 import Image from "../../assets/fruits.png";
 import { loginUserActionCreator } from "../../actions/actions";
+
+export const Header = styled.footer`
+  font-size: 5rem;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 5px;
+  font-family: "Bree Serif", serif;
+  h2 {
+    margin: 2rem 0 1rem 0;
+  }
+`;
+
+export const Input = styled.input`
+  margin: 4px;
+  padding: 9px;
+  background-color: rgba(255, 255, 255, 0.5);
+  &:hover,
+  &:focus {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+`;
 
 class Login extends Component {
   state = {
@@ -35,28 +57,22 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <div className={styles.heading}>
+        <Header>
           <h2>Login</h2>
-        </div>
-        <img className={styles.image} src={Image} alt="fruit" width="200px" />
+        </Header>
+        <img src={Image} alt="fruit" width="200px" />
         <form action="#">
-          <div className={styles.input}>
-            <span className="input-group-addon">
-              <i className={styles.fa + " fa fa-envelope"}></i>
-            </span>
-            <input
-              type="email"
-              onChange={this.onEmailChange}
-              className="form-control"
-              placeholder="Email"
-            />
-          </div>
+          <i className={"fa fa-envelope"} style={{ marginRight: "5px" }}></i>
+          <Input
+            type="email"
+            onChange={this.onEmailChange}
+            className="form-control"
+            placeholder="Email"
+          />
 
-          <div className={styles.input}>
-            <span className="input-group-addon">
-              <i className={styles.fa + " fa fa-lock"}></i>
-            </span>
-            <input
+          <div>
+            <i className={"fa fa-lock"} style={{ marginRight: "5px" }} />
+            <Input
               type="password"
               className="form-control"
               placeholder="Password"
@@ -64,9 +80,8 @@ class Login extends Component {
             />
           </div>
 
-          <button
+          <Button
             type="submit"
-            className={styles.button}
             onClick={(event) => {
               // PreventDefault helps against form default behavior of re-rendering
               event.preventDefault();
@@ -74,12 +89,12 @@ class Login extends Component {
             }}
           >
             Login
-          </button>
+          </Button>
         </form>
-        <h3 className={styles.h3margin}>
+        <h3>
           Don't have an Account?{" "}
           <Link to="/register">
-            <button className={styles.button}>Register Here</button>
+            <Button style={{ marginLeft: "10px" }}>Register Here</Button>
           </Link>
         </h3>
       </div>

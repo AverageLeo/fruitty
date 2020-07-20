@@ -1,5 +1,19 @@
 import React from "react";
-import styles from "./NutritionRow.module.css";
+import styled from "styled-components";
+
+const InputName = styled.input`
+  width: 120px;
+  border: 1px dotted rgb(162, 196, 151);
+  background-color: rgb(217, 243, 208);
+  text-align: center;
+  font: inherit;
+  padding: unset;
+  margin-left: 3px;
+`;
+
+const InputValue = styled(InputName)`
+  width: 40px;
+`;
 
 const nutritionRow = (props) => {
   //Uppercasing first letter
@@ -18,19 +32,18 @@ const nutritionRow = (props) => {
     <div>
       {props.editMode ? (
         // Nutrition row in Edit mode, Label becomes Input
-        <label className={styles.inputMode}>
-          <input
-            className={styles.InputName + " nutritionsInfoName"}
+        <label>
+          <InputName
+            className={"nutritionsInfoName"}
             defaultValue={NutritionsNameUpperCase}
           />
-          <input
-            className={styles.Input + " nutritionsInfoValue"}
+          <InputValue
+            className={"nutritionsInfoValue"}
             defaultValue={props.nutritionsValue}
           />
           <i
-            className={
-              styles.deleteIcon + " far fa-minus-square nutritionsInfoRowDelete"
-            }
+            className={"far fa-minus-square nutritionsInfoRowDelete"}
+            style={{ marginLeft: "10px", cursor: "pointer" }}
             onClick={() => {
               props.nutritionsInfoRowDeleteHandler(
                 props.nutritionsName,

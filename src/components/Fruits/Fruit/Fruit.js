@@ -1,13 +1,29 @@
 import React from "react";
-import styles from "./Fruit.module.css";
+import styled from "styled-components";
+
+const ListItem = styled.li`
+  margin: 0.8rem;
+  h4 {
+    font-family: "Roboto Slab", serif;
+    list-style: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+  span {
+    transition: margin-left 0.3s ease-in-out;
+  }
+  :hover span {
+    margin-left: 8px;
+  }
+`;
 
 const fruit = ({ fruitDetails }) => {
   return (
-    <li className={styles.li}>
+    <ListItem>
       <h4>
-        {fruitDetails.name} <span className={styles.arrow}>{">"}</span>
+        {fruitDetails.name} <span>{">"}</span>
       </h4>
-    </li>
+    </ListItem>
   );
 };
 

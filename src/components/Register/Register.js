@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./Register.module.css";
+import Button from "../../UI/Button";
+import { Header, Input } from "../Login/Login";
 import Image from "../../assets/fruits.png";
 
 class Register extends Component {
@@ -44,16 +45,18 @@ class Register extends Component {
   render() {
     return (
       <div className="register">
-        <div className={styles.heading}>
+        <Header>
           <h2>Register</h2>
-        </div>
-        <img className={styles.image} src={Image} alt="fruit" width="200px" />
+        </Header>
+
+        <img src={Image} alt="fruit" width="200px" />
+
         <form action="#">
-          <div className={styles.input}>
+          <div>
             <span className="input-group-addon">
-              <i className={styles.fa + " fa fa-user"}></i>
+              <i className="fa fa-user" style={{ marginRight: "5px" }} />
             </span>
-            <input
+            <Input
               type="text"
               className="form-control"
               placeholder="Name"
@@ -61,11 +64,11 @@ class Register extends Component {
             />
           </div>
 
-          <div className={styles.input}>
+          <div>
             <span className="input-group-addon">
-              <i className={styles.fa + " fa fa-envelope"}></i>
+              <i className="fa fa-envelope" style={{ marginRight: "5px" }} />
             </span>
-            <input
+            <Input
               type="email"
               className="form-control"
               placeholder="Email"
@@ -73,11 +76,11 @@ class Register extends Component {
             />
           </div>
 
-          <div className={styles.input}>
+          <div>
             <span className="input-group-addon">
-              <i className={styles.fa + " fa fa-lock"}></i>
+              <i className="fa fa-lock" style={{ marginRight: "5px" }} />
             </span>
-            <input
+            <Input
               type="password"
               className="form-control"
               placeholder="Password"
@@ -85,9 +88,8 @@ class Register extends Component {
             />
           </div>
 
-          <button
+          <Button
             type="submit"
-            className={styles.button}
             onClick={(event) => {
               // PreventDefault helps against form default behavior of re-rendering
               event.preventDefault();
@@ -95,12 +97,12 @@ class Register extends Component {
             }}
           >
             Register
-          </button>
+          </Button>
         </form>
-        <h3 className={styles.h3margin}>
+        <h3 style={{ marginLeft: "10px" }}>
           Already have an Account?{" "}
           <Link to="/login">
-            <button className={styles.button}>Login Here</button>
+            <Button>Login Here</Button>
           </Link>
         </h3>
       </div>

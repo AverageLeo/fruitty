@@ -21,7 +21,19 @@ import Favorites from "../components/Fruits/Favorites/Favorites";
 import NotFound from "../components/NotFound/NotFound";
 import Footer from "../components/Footer/Footer";
 
-import "./App.css";
+import styled from "styled-components";
+import Button from "../UI/Button";
+
+const LogoutButton = styled(Button)`
+  color: rgb(87, 87, 87);
+  letter-spacing: 0.05rem;
+  border: 2px solid rgba(112, 112, 112, 0.3);
+  margin: 1rem 1rem;
+  :hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.15rem;
+  }
+`;
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +47,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.user);
+    // console.log(this.props.user);
     const publicUrls = ["/login", "/register", "/404"];
     const closeForUsersUrls = ["/login", "/register"];
     const url = this.props.history.location.pathname;
@@ -61,9 +73,13 @@ class App extends Component {
         <div>
           {" "}
           Hello {this.props.user.name}!
-          <button onClick={this.logoutHandler} className="logoutButton">
+          <LogoutButton
+            Logout
+            onClick={this.logoutHandler}
+            className="logoutButton"
+          >
             Log-out
-          </button>
+          </LogoutButton>
         </div>
       );
     } else {
@@ -72,8 +88,8 @@ class App extends Component {
 
     return (
       <HashRouter>
-        <div className="App">
-          <div className="content">
+        <div style={{ textAlign: "center" }}>
+          <div style={{ marginBottom: "2.5rem" }}>
             {Button}
             <Switch>
               <Route path="/login" exact component={Login} />
