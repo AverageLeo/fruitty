@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import img from "./assets/doodle.png";
 
 const GlobalStyle = createGlobalStyle`body { 
   height: 100%;
@@ -17,7 +18,7 @@ html {
     rgba(213, 253, 198, 0.7),
     rgba(213, 253, 198, 0.7)
   ),
-  url("./assets/doodle.png");
+  url(${img});
   background-repeat: repeat;
   background-size: auto;
 }

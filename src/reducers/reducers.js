@@ -13,6 +13,7 @@ export const requestFruitsReducer = (
       return Object.assign({}, state, { isPending: true });
 
     case "REQUEST_FRUITS_SUCCESS":
+      console.log(action.payload);
       return Object.assign({}, state, {
         fruits: action.payload,
         isPending: false,
