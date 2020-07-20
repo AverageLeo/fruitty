@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import GlobalStyle from "./GlobalStyles";
 import App from "./containers/App";
 import { HashRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
@@ -27,6 +27,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <HashRouter>
+        <GlobalStyle />
         <App />
       </HashRouter>
     </Provider>
