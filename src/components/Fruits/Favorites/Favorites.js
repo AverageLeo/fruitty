@@ -50,7 +50,7 @@ const Favorites = (props) => {
       return (
         <Link
           to={`/fruitdetails/${fruit.name.toLowerCase()}`}
-          key={fruit.id}
+          key={fruit._id}
           genus={fruit.genus}
         >
           <Fruit fruitDetails={fruit} />

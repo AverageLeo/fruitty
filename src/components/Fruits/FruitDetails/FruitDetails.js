@@ -86,9 +86,7 @@ const EditButton = styled.span`
 class FruitDetails extends Component {
   constructor(props) {
     super(props);
-    this.nutritionsInfoRowDeleteHandler = this.nutritionsInfoRowDeleteHandler.bind(
-      this
-    );
+    this.deleteNutritionHandler = this.deleteNutritionHandler.bind(this);
     this.addNutritionHandler = this.addNutritionHandler.bind(this);
     this.editNutritionsHandler = this.editNutritionsHandler.bind(this);
     this.state = {
@@ -97,27 +95,22 @@ class FruitDetails extends Component {
     };
   }
 
-  nutritionsInfoRowDeleteHandler(nutritionName, fruitInfo) {
-    const updatefruitNutritions = { ...fruitInfo.nutritions };
-    delete updatefruitNutritions[nutritionName];
-    const updatedFruit = Object.assign({}, fruitInfo, {
-      nutritions: { ...updatefruitNutritions },
-    });
-
-    this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
-  }
-
+  // This function is responsible for handling new nutrition
   addNutritionHandler(fruits) {
     const fruitInfo = {
       ...fruits.find((fruit) => {
         return fruit.name.toLowerCase() === this.props.match.params.name;
       }),
     };
+
+    const updatedNutritions = [...fruitInfo.nutritions];
+    updatedNutritions.push({ name: "Edit", value: "Me" });
+
     const updatedFruit = Object.assign({}, fruitInfo, {
-      nutritions: { ...fruitInfo.nutritions, "Hello There": "0" },
+      nutritions: updatedNutritions,
     });
 
-    this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
+    this.props.onNutritionRowChange(updatedFruit._id, updatedFruit);
   }
 
   editNutritionsHandler() {
@@ -147,7 +140,25 @@ class FruitDetails extends Component {
       nutritions: updatedNutritions,
     });
 
-    this.props.onNutritionRowChange(updatedFruit.id, updatedFruit);
+    this.props.onNutritionRowChange(updatedFruit._id, updatedFruit);
+  }
+
+  deleteNutritionHandler(nutritionName, fruitInfo) {
+    const updatedNutritions = [...fruitInfo.nutritions].filter(
+      (nutrition) => nutritionName !== nutrition.name
+    );
+
+    const updatedFruit = Object.assign({}, fruitInfo, {
+      nutritions: updatedNutritions,
+    });
+
+    // const updatefruitNutritions = { ...fruitInfo.nutritions };
+    // delete updatefruitNutritions[nutritionName];
+    // const updatedFruit = Object.assign({}, fruitInfo, {
+    //   nutritions: { ...updatefruitNutritions },
+    // });
+
+    this.props.onNutritionRowChange(updatedFruit._id, updatedFruit);
   }
 
   render() {
@@ -156,9 +167,10 @@ class FruitDetails extends Component {
         return fruit.name.toLowerCase() === this.props.match.params.name;
       }),
     };
-
     const imageLink = `${fruitInfo.urlImage}`;
-    const fruitNutritions = { ...fruitInfo.nutritions };
+    const fruitNutritions = fruitInfo.nutritions
+      ? [...fruitInfo.nutritions]
+      : [];
     return (
       <div className="fruitsDetails">
         <GoBackButton
@@ -259,15 +271,13 @@ class FruitDetails extends Component {
                 ? "Click again to confirm the changes!"
                 : null}
 
-              {Object.keys(fruitNutritions).map((row) => {
+              {fruitNutritions.map((nutrition) => {
                 return (
                   <NutritionRow
-                    nutritionsInfoRowDeleteHandler={
-                      this.nutritionsInfoRowDeleteHandler
-                    }
+                    deleteNutritionHandler={this.deleteNutritionHandler}
                     fruitInfo={fruitInfo}
-                    nutritionsName={row}
-                    nutritionsValue={fruitNutritions[row]}
+                    nutritionsName={nutrition.name}
+                    nutritionsValue={nutrition.value}
                     editMode={this.state.editMode}
                     key={Math.floor(Math.random() * 10000000)}
                   />

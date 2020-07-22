@@ -121,6 +121,7 @@ export const logoutUserActionCreator = (token) => (dispatch) => {
 export const nutritionRowChangeActionCreator = (id, updatedFruit) => (
   dispatch
 ) => {
+  console.log("id: ", id, "fruit: ", updatedFruit);
   dispatch({ type: "NUTRITION_CHANGE_PENDING" });
   fetch(`http://localhost:3003/fruit/${id}/updateNutrition`, {
     method: "post",
@@ -136,6 +137,7 @@ export const nutritionRowChangeActionCreator = (id, updatedFruit) => (
           dispatch({ type: "NUTRITION_CHANGE_FAILED", payload: data.error });
           // console.log(data);
         } else {
+          console.log(updatedFruit);
           dispatch({ type: "NUTRITION_CHANGE_SUCCESS", payload: updatedFruit });
           // console.log(data);
         }

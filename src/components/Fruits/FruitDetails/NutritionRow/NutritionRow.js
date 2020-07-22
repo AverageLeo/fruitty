@@ -45,10 +45,11 @@ const nutritionRow = (props) => {
             className={"far fa-minus-square nutritionsInfoRowDelete"}
             style={{ marginLeft: "10px", cursor: "pointer" }}
             onClick={() => {
-              props.nutritionsInfoRowDeleteHandler(
+              props.deleteNutritionHandler(
                 props.nutritionsName,
                 props.fruitInfo
               );
+              console.log(props.nutritionsName);
             }}
           />
         </label>
