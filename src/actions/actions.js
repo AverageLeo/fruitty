@@ -118,12 +118,9 @@ export const logoutUserActionCreator = (token) => (dispatch) => {
     });
 };
 
-export const nutritionRowChangeActionCreator = (id, updatedFruit) => (
-  dispatch
-) => {
-  console.log("id: ", id, "fruit: ", updatedFruit);
+export const nutritionRowChangeActionCreator = (updatedFruit) => (dispatch) => {
   dispatch({ type: "NUTRITION_CHANGE_PENDING" });
-  fetch(`http://localhost:3003/fruit/${id}/updateNutrition`, {
+  fetch(`http://localhost:3003/fruit/${updatedFruit._id}/updateNutrition`, {
     method: "post",
     headers: {
       Accept: "application/json",
@@ -135,11 +132,8 @@ export const nutritionRowChangeActionCreator = (id, updatedFruit) => (
       return response.json().then(function (data) {
         if (data.error) {
           dispatch({ type: "NUTRITION_CHANGE_FAILED", payload: data.error });
-          // console.log(data);
         } else {
-          console.log(updatedFruit);
           dispatch({ type: "NUTRITION_CHANGE_SUCCESS", payload: updatedFruit });
-          // console.log(data);
         }
       });
     })

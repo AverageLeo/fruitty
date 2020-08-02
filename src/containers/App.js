@@ -47,7 +47,6 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    // console.log(this.props.user);
     const publicUrls = ["/login", "/register", "/404"];
     const closeForUsersUrls = ["/login", "/register"];
     const url = this.props.history.location.pathname;

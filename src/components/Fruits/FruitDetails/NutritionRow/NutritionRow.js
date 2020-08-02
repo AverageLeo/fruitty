@@ -49,7 +49,6 @@ const nutritionRow = (props) => {
                 props.nutritionsName,
                 props.fruitInfo
               );
-              console.log(props.nutritionsName);
             }}
           />
         </label>

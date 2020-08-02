@@ -104,15 +104,16 @@ class FruitDetails extends Component {
     };
 
     const updatedNutritions = [...fruitInfo.nutritions];
-    updatedNutritions.push({ name: "Edit", value: "Me" });
+    updatedNutritions.push({ name: "New", value: "0" });
 
     const updatedFruit = Object.assign({}, fruitInfo, {
       nutritions: updatedNutritions,
     });
 
-    this.props.onNutritionRowChange(updatedFruit._id, updatedFruit);
+    this.props.onNutritionRowChange(updatedFruit);
   }
 
+  // This function is responsible for editing a nutrition
   editNutritionsHandler() {
     // Get all nutritions names and values
     const updatedNutritionsValues = [].slice
@@ -122,12 +123,11 @@ class FruitDetails extends Component {
       .call(document.getElementsByClassName("nutritionsInfoName"))
       .map((x) => x.value);
 
-    // Zip values to names
-    const updatedNutritions = Object.assign(
-      {},
-      ...updatedNutritionsNames.map((name, indexOf) => ({
-        [name]: updatedNutritionsValues[indexOf],
-      }))
+    // Zip name and value to corresponding property
+    const updatedNutritions = updatedNutritionsNames.map(
+      (name, indexOfName) => {
+        return { name, value: updatedNutritionsValues[indexOfName] };
+      }
     );
 
     // Create fruit object updated with new nutritions
@@ -140,9 +140,10 @@ class FruitDetails extends Component {
       nutritions: updatedNutritions,
     });
 
-    this.props.onNutritionRowChange(updatedFruit._id, updatedFruit);
+    this.props.onNutritionRowChange(updatedFruit);
   }
 
+  // This function is responsible for deleting a nutrition
   deleteNutritionHandler(nutritionName, fruitInfo) {
     const updatedNutritions = [...fruitInfo.nutritions].filter(
       (nutrition) => nutritionName !== nutrition.name
@@ -152,13 +153,7 @@ class FruitDetails extends Component {
       nutritions: updatedNutritions,
     });
 
-    // const updatefruitNutritions = { ...fruitInfo.nutritions };
-    // delete updatefruitNutritions[nutritionName];
-    // const updatedFruit = Object.assign({}, fruitInfo, {
-    //   nutritions: { ...updatefruitNutritions },
-    // });
-
-    this.props.onNutritionRowChange(updatedFruit._id, updatedFruit);
+    this.props.onNutritionRowChange(updatedFruit);
   }
 
   render() {
@@ -298,10 +293,8 @@ const mapDispatchToProps = (dispatch) => {
         writeLocalFavoriteFruitsActionCreator(fruitName, favoriteFruitsList)
       );
     },
-    onNutritionRowChange: (updatedFruitID, updatedFruit) => {
-      return dispatch(
-        nutritionRowChangeActionCreator(updatedFruitID, updatedFruit)
-      );
+    onNutritionRowChange: (updatedFruit) => {
+      return dispatch(nutritionRowChangeActionCreator(updatedFruit));
     },
   };
 };
